@@ -9,15 +9,6 @@ import { MidnightZone } from "@/components/zones/MidnightZone";
 import { AbyssalZone } from "@/components/zones/AbyssalZone";
 import { HadalZone } from "@/components/zones/HadalZone";
 import { ConfirmationScreen } from "@/components/zones/ConfirmationScreen";
-import type { ZoneId } from "@/lib/data/types";
-
-const ZONE_COMPONENTS: Record<ZoneId, React.ComponentType> = {
-  sunlight: SunlightZone,
-  twilight: TwilightZone,
-  midnight: MidnightZone,
-  abyssal: AbyssalZone,
-  hadal: () => <HadalZone onSubmitted={() => undefined} />,
-};
 
 function ApplyContent() {
   const { loading, currentZoneId, submitted, applicantId } = useApplication();
@@ -44,14 +35,15 @@ function ApplyContent() {
       {currentZoneId === "midnight" && <MidnightZone key="midnight" />}
       {currentZoneId === "abyssal" && <AbyssalZone key="abyssal" />}
       {currentZoneId === "hadal" && (
-        <HadalZoneWithConfirmation key="hadal" />
+        <HadalZone key="hadal" onSubmitted={() => undefined} />
       )}
     </AnimatePresence>
   );
 }
 
-function HadalZoneWithConfirmation() {
-  return <HadalZone onSubmitted={() => undefined} />;
+function ApplyBackground() {
+  const { currentZoneId, submitted } = useApplication();
+  return <ZoneBackground currentZone={submitted ? "hadal" : currentZoneId} />;
 }
 
 export function ApplyFlow() {
@@ -61,9 +53,4 @@ export function ApplyFlow() {
       <ApplyContent />
     </ApplicationProvider>
   );
-}
-
-function ApplyBackground() {
-  const { currentZoneId, submitted } = useApplication();
-  return <ZoneBackground currentZone={submitted ? "hadal" : currentZoneId} />;
 }
