@@ -173,6 +173,7 @@ export function ApplicantDetail({ id }: ApplicantDetailProps) {
             onChange={(field, value) => updateReview(id, { [field]: value })}
           />
           <NotesField
+            key={applicant.id}
             value={applicant.reviewerNotes ?? ""}
             onSave={(notes) => updateReview(id, { reviewerNotes: notes })}
           />

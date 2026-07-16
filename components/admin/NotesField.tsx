@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Card } from "@/components/ui/Card";
 
 interface NotesFieldProps {
@@ -8,13 +8,10 @@ interface NotesFieldProps {
   onSave: (value: string) => void;
 }
 
+/** Mount with `key={applicant.id}` at the call site so switching applicants resets the draft. */
 export function NotesField({ value, onSave }: NotesFieldProps) {
   const [draft, setDraft] = useState(value);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    setDraft(value);
-  }, [value]);
 
   function handleChange(next: string) {
     setDraft(next);
