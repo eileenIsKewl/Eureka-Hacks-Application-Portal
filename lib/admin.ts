@@ -3,27 +3,31 @@ import { getZone } from "@/lib/zones";
 
 export const STATUS_META: Record<
   ReviewStatus,
-  { label: string; badgeClass: string; dotClass: string }
+  { label: string; badgeClass: string; dotClass: string; textClass: string }
 > = {
   PENDING: {
     label: "Pending",
     badgeClass: "bg-white/10 text-white/70 border-white/15",
     dotClass: "bg-white/50",
+    textClass: "text-white/70",
   },
   ACCEPTED: {
     label: "Accepted",
     badgeClass: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
     dotClass: "bg-emerald-400",
+    textClass: "text-emerald-300",
   },
   REJECTED: {
     label: "Rejected",
     badgeClass: "bg-rose-500/15 text-rose-300 border-rose-500/30",
     dotClass: "bg-rose-400",
+    textClass: "text-rose-300",
   },
   WAITLISTED: {
     label: "Waitlisted",
     badgeClass: "bg-amber-400/15 text-amber-300 border-amber-400/30",
     dotClass: "bg-amber-300",
+    textClass: "text-amber-300",
   },
 };
 
