@@ -1,7 +1,7 @@
 "use client";
 
 import type { FieldConfig } from "@/lib/zones";
-import { cn } from "@/lib/cn";
+import { cn, SELECT_OPTION_STYLE } from "@/lib/cn";
 
 interface FormFieldProps {
   config: FieldConfig;
@@ -70,11 +70,11 @@ export function FormField({
             !value && "text-white/35"
           )}
         >
-          <option value="" disabled>
+          <option value="" disabled style={SELECT_OPTION_STYLE}>
             Choose one...
           </option>
           {config.options?.map((opt) => (
-            <option key={opt.value} value={opt.value} className="text-black">
+            <option key={opt.value} value={opt.value} style={SELECT_OPTION_STYLE}>
               {opt.label}
             </option>
           ))}

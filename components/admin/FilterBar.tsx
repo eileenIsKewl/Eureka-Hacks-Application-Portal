@@ -2,7 +2,7 @@
 
 import { REVIEW_STATUSES, type ReviewStatus } from "@/lib/data/types";
 import { STATUS_META, type SortKey, type SortDir } from "@/lib/admin";
-import { cn } from "@/lib/cn";
+import { cn, SELECT_OPTION_STYLE } from "@/lib/cn";
 
 export type ViewMode = "table" | "cards" | "pipeline";
 
@@ -53,9 +53,9 @@ export function FilterBar({
           onChange={(e) => onStatusFilterChange(e.target.value as ReviewStatus | "ALL")}
           className={controlClasses}
         >
-          <option value="ALL">All statuses</option>
+          <option value="ALL" style={SELECT_OPTION_STYLE}>All statuses</option>
           {REVIEW_STATUSES.map((s) => (
-            <option key={s} value={s}>
+            <option key={s} value={s} style={SELECT_OPTION_STYLE}>
               {STATUS_META[s].label}
             </option>
           ))}
@@ -66,9 +66,9 @@ export function FilterBar({
           onChange={(e) => onSchoolFilterChange(e.target.value)}
           className={controlClasses}
         >
-          <option value="ALL">All schools</option>
+          <option value="ALL" style={SELECT_OPTION_STYLE}>All schools</option>
           {schools.map((s) => (
-            <option key={s} value={s}>
+            <option key={s} value={s} style={SELECT_OPTION_STYLE}>
               {s}
             </option>
           ))}
@@ -82,15 +82,15 @@ export function FilterBar({
           }}
           className={controlClasses}
         >
-          <option value="createdAt:desc">Newest first</option>
-          <option value="createdAt:asc">Oldest first</option>
-          <option value="name:asc">Name A→Z</option>
-          <option value="name:desc">Name Z→A</option>
-          <option value="score:desc">Highest score</option>
-          <option value="score:asc">Lowest score</option>
-          <option value="school:asc">School A→Z</option>
-          <option value="completion:desc">Furthest along</option>
-          <option value="completion:asc">Least far along</option>
+          <option value="createdAt:desc" style={SELECT_OPTION_STYLE}>Newest first</option>
+          <option value="createdAt:asc" style={SELECT_OPTION_STYLE}>Oldest first</option>
+          <option value="name:asc" style={SELECT_OPTION_STYLE}>Name A to Z</option>
+          <option value="name:desc" style={SELECT_OPTION_STYLE}>Name Z to A</option>
+          <option value="score:desc" style={SELECT_OPTION_STYLE}>Highest score</option>
+          <option value="score:asc" style={SELECT_OPTION_STYLE}>Lowest score</option>
+          <option value="school:asc" style={SELECT_OPTION_STYLE}>School A to Z</option>
+          <option value="completion:desc" style={SELECT_OPTION_STYLE}>Furthest along</option>
+          <option value="completion:asc" style={SELECT_OPTION_STYLE}>Least far along</option>
         </select>
       </div>
 
