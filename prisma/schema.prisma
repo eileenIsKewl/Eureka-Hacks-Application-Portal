@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ReviewStatus: "PENDING" | "ACCEPTED" | "REJECTED" | "WAITLISTED"
+// ZoneId: "sunlight" | "twilight" | "midnight" | "abyssal" | "hadal"
+// (SQLite has no native enum type — validated at the app layer, see lib/data/types.ts)
+
+model Applicant {
+  id String @id @default(cuid())
+
+  // lifecycle
+  currentZone String  @default("sunlight")
+  submitted   Boolean @default(false)
+  submittedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Sunlight Zone — welcome & basic info
+  fullName String?
+  email    String? @unique
+  pronouns String?
+  phone    String?
+
+  // Twilight Zone — education & background
+  school           String?
+  educationLevel   String?
+  gradYear         String?
+  fieldOfStudy     String?
+
+  // Midnight Zone — skills & hackathon experience
+  hackathonsAttended  String?
+  technicalSkills     String?
+  portfolioUrl        String?
+  dietaryRestrictions String?
+
+  // Abyssal Zone — essays & motivation
+  essayWhy     String?
+  essayLearn   String?
+  essayProject String?
+
+  // Hadal Zone — resume
+  resumeFileName String?
+  resumeMimeType String?
+  resumeData     Bytes?
+
+  // Review (admin)
+  status          String @default("PENDING")
+  scoreTechnical  Float?
+  scoreCreativity Float?
+  scoreFit        Float?
+  reviewerNotes   String?
+  reviewedAt      DateTime?
+
+  @@map("applicants")
+}
