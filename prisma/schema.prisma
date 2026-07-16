@@ -23,7 +23,7 @@ model Applicant {
 
   // Sunlight Zone: welcome and basic info
   fullName String?
-  email    String? @unique
+  email    String?
   pronouns String?
   phone    String?
 

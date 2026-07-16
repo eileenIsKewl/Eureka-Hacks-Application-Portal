@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const EXTENSIONS = ["svg", "png"] as const;
 
@@ -21,6 +21,18 @@ export interface CreatureSlotProps {
  */
 export function CreatureSlot({ asset, alt, className, fallback }: CreatureSlotProps) {
   const [attempt, setAttempt] = useState(0);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // The image can finish failing to load before React hydrates and attaches
+  // onError (a server-rendered <img> starts fetching immediately), which
+  // would otherwise miss the error event entirely. Check the already-settled
+  // state on mount as a fallback to onError.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) {
+      setAttempt((n) => n + 1);
+    }
+  }, [attempt]);
 
   if (attempt >= EXTENSIONS.length) {
     return (
@@ -31,9 +43,10 @@ export function CreatureSlot({ asset, alt, className, fallback }: CreatureSlotPr
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
+    // eslint-disable-next-line @next/next/no-img-element -- probes for a file that may not exist; next/image can't do that
     <img
       key={attempt}
+      ref={imgRef}
       src={`/assets/creatures/${asset}.${EXTENSIONS[attempt]}`}
       alt={alt}
       className={className}
