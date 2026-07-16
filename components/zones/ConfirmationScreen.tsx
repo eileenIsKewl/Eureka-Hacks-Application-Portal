@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 import { CreatureSlot } from "@/components/creatures/CreatureSlot";
 import { GeometricCreature } from "@/components/creatures/GeometricCreature";
 import { BubbleField } from "@/components/ui/BubbleField";
+import { Button } from "@/components/ui/Button";
+import { useApplication } from "@/hooks/useApplication";
 
 interface ConfirmationScreenProps {
   applicantId: string | null;
 }
 
 export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
+  const { startNewApplication } = useApplication();
   return (
     <div className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 py-16 text-center">
       <BubbleField count={22} />
@@ -58,6 +61,17 @@ export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
           Dive record {applicantId}
         </motion.p>
       )}
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.65, duration: 0.6 }}
+        className="relative z-10 mt-10"
+      >
+        <Button variant="ghost" onClick={startNewApplication}>
+          Send another one down
+        </Button>
+      </motion.div>
     </div>
   );
 }

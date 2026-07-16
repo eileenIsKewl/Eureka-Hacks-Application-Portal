@@ -81,6 +81,7 @@ interface ApplicationContextValue {
   goBack: () => Promise<void>;
   submitApplication: () => Promise<{ ok: boolean; missing?: string[] }>;
   markResumeUploaded: (fileName: string) => void;
+  startNewApplication: () => void;
 }
 
 const ApplicationContext = createContext<ApplicationContextValue | null>(null);
@@ -322,6 +323,12 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     setResumeFileName(fileName);
   }, []);
 
+  const startNewApplication = useCallback(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.removeItem(STORAGE_KEY);
+    window.location.href = "/apply";
+  }, []);
+
   const value: ApplicationContextValue = {
     loading,
     applicantId,
@@ -342,6 +349,7 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     goBack,
     submitApplication,
     markResumeUploaded,
+    startNewApplication,
   };
 
   return (
