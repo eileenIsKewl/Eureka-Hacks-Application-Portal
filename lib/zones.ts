@@ -305,3 +305,14 @@ export function zoneIndex(id: ZoneId): number {
 export function zonesRemaining(id: ZoneId): number {
   return ZONES.length - 1 - zoneIndex(id);
 }
+
+export function formatFieldValue(
+  field: FieldConfig,
+  value: string | null | undefined
+): string {
+  if (!value) return "—";
+  if (field.options) {
+    return field.options.find((o) => o.value === value)?.label ?? value;
+  }
+  return value;
+}
