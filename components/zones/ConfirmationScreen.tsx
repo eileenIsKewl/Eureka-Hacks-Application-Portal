@@ -44,7 +44,7 @@ export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
         className="relative z-10 max-w-md text-white/70"
       >
         Your application just reached the bottom of the trench — the deepest
-        point we go. It's been logged, and our crew will surface with a
+        point we go. It&apos;s been logged, and our crew will surface with a
         decision soon.
       </motion.p>
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/Card";
 
 interface ScorePanelProps {
