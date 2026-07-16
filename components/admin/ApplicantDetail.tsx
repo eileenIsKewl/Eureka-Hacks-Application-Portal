@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { ApplicantRecord, ReviewStatus } from "@/lib/data/types";
+import type { ReviewStatus } from "@/lib/data/types";
 import { ZONES } from "@/lib/zones";
 import { displayName } from "@/lib/admin";
 import { useApplicants } from "@/hooks/useApplicants";
@@ -22,26 +22,11 @@ const reviewableZones = ZONES.filter((z) => z.fields.length > 0);
 export function ApplicantDetail({ id }: ApplicantDetailProps) {
   const router = useRouter();
   const { applicants, loading, updateReview } = useApplicants();
-  const [applicant, setApplicant] = useState<ApplicantRecord | null>(null);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(`/api/applicants/${id}`).then(async (res) => {
-      if (cancelled) return;
-      if (res.ok) setApplicant(await res.json());
-      else setNotFound(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
-
-  // Keep the local record in sync once the roster loads/updates (e.g. after a review edit).
-  useEffect(() => {
-    const fresh = applicants.find((a) => a.id === id);
-    if (fresh) setApplicant(fresh);
-  }, [applicants, id]);
+  const applicant = useMemo(
+    () => applicants.find((a) => a.id === id) ?? null,
+    [applicants, id]
+  );
+  const notFound = !loading && !applicant;
 
   const orderedIds = useMemo(
     () =>
