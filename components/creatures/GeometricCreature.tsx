@@ -4,7 +4,7 @@ interface GeometricCreatureProps {
 }
 
 /**
- * Temporary stand-in creature built from plain shapes — an ellipse body, a
+ * Temporary stand-in creature built from plain shapes, an ellipse body, a
  * triangular tail fin, and an eye. Colored via `currentColor` so a parent can
  * theme it per zone. Replace by dropping real art into /assets/creatures;
  * this never needs to be touched once that happens.

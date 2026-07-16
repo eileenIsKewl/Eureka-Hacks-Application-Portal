@@ -15,7 +15,7 @@ function seededSpread(i: number, n: number) {
 }
 
 /**
- * Bubbles drifting upward past the viewer — the constant ambient cue that
+ * Bubbles drifting upward past the viewer, the constant ambient cue that
  * we're underwater, plus an extra burst fired during zone transitions.
  */
 export function BubbleField({ count = 18, burst = false, className }: BubbleFieldProps) {

@@ -74,7 +74,7 @@ export function KanbanBoard({ applicants, onStatusChange }: KanbanBoardProps) {
                   <div className="mt-1 flex items-center justify-between text-xs text-white/40">
                     <span>{a.school ?? "No school"}</span>
                     <span className="text-glow-400">
-                      {score !== null ? score.toFixed(1) : "—"}
+                      {score !== null ? score.toFixed(1) : "N/A"}
                     </span>
                   </div>
                 </Card>

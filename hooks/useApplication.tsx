@@ -48,7 +48,7 @@ function writeLocalStorage(data: StoredShape) {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch {
-    // storage full or unavailable — autosave to server still applies
+    // storage full or unavailable, autosave to server still applies
   }
 }
 
@@ -79,7 +79,7 @@ interface ApplicationContextValue {
   goToZone: (zoneId: ZoneId) => Promise<void>;
   goNext: () => Promise<void>;
   goBack: () => Promise<void>;
-  submitApplication: () => Promise<boolean>;
+  submitApplication: () => Promise<{ ok: boolean; missing?: string[] }>;
   markResumeUploaded: (fileName: string) => void;
 }
 
@@ -136,14 +136,14 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
               currentZone: record.currentZone,
             });
           } else {
-            // The server has no memory of this id (fresh db) — recreate from local cache.
+            // The server has no memory of this id (fresh db), recreate from local cache.
             await createDraft(local.values, local.currentZone);
           }
         } else {
           await createDraft(emptyValues(), "sunlight");
         }
       } catch {
-        // Offline or server unreachable — local cache still lets the applicant keep working.
+        // Offline or server unreachable, local cache still lets the applicant keep working.
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -296,8 +296,11 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     }
   }, [currentZoneId, goToZone]);
 
-  const submitApplication = useCallback(async (): Promise<boolean> => {
-    if (!applicantId) return false;
+  const submitApplication = useCallback(async (): Promise<{
+    ok: boolean;
+    missing?: string[];
+  }> => {
+    if (!applicantId) return { ok: false };
     await flushServerSave();
     try {
       const res = await fetch(`/api/applicants/${applicantId}/submit`, {
@@ -305,11 +308,12 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
       });
       if (res.ok) {
         setSubmitted(true);
-        return true;
+        return { ok: true };
       }
-      return false;
+      const body = await res.json().catch(() => null);
+      return { ok: false, missing: body?.missing };
     } catch {
-      return false;
+      return { ok: false };
     }
   }, [applicantId, flushServerSave]);
 

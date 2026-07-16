@@ -17,7 +17,7 @@ export const REVIEW_STATUSES = [
 
 export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
 
-/** The applicant record as seen by clients — resume bytes are never sent, only metadata. */
+/** The applicant record as seen by clients. Resume bytes are never sent, only metadata. */
 export interface ApplicantRecord {
   id: string;
   currentZone: ZoneId;

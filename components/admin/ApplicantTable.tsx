@@ -15,7 +15,7 @@ export function ApplicantTable({ applicants }: ApplicantTableProps) {
   if (applicants.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-white/15 py-16 text-center text-white/40">
-        Empty water. No applicants match — try wider nets.
+        Empty water. No applicants match. Try wider nets.
       </div>
     );
   }
@@ -45,13 +45,13 @@ export function ApplicantTable({ applicants }: ApplicantTableProps) {
                   <div className="font-medium text-white">{displayName(a)}</div>
                   <div className="text-xs text-white/40">{a.email ?? "no email"}</div>
                 </td>
-                <td className="px-4 py-3 text-white/70">{a.school ?? "—"}</td>
+                <td className="px-4 py-3 text-white/70">{a.school ?? "N/A"}</td>
                 <td className="px-4 py-3 text-white/70">{zoneReachedLabel(a)}</td>
                 <td className="px-4 py-3">
                   <StatusBadge status={a.status} />
                 </td>
                 <td className="px-4 py-3 text-glow-400">
-                  {score !== null ? score.toFixed(1) : "—"}
+                  {score !== null ? score.toFixed(1) : "N/A"}
                 </td>
               </tr>
             );

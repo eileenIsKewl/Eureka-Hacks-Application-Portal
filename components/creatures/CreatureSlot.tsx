@@ -17,7 +17,7 @@ export interface CreatureSlotProps {
  * The swap point for hand-drawn creature art. Looks for
  * /assets/creatures/{asset}.svg, then .png, then gives up and renders the
  * geometric fallback. Drop a correctly-named file into public/assets/creatures
- * and it takes over automatically — no code changes needed.
+ * and it takes over automatically, no code changes needed.
  */
 export function CreatureSlot({ asset, alt, className, fallback }: CreatureSlotProps) {
   const [attempt, setAttempt] = useState(0);

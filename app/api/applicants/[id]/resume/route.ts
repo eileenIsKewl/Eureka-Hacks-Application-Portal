@@ -21,7 +21,7 @@ export async function POST(
   }
   if (file.size > MAX_BYTES) {
     return NextResponse.json(
-      { error: "That file is too heavy to sink with you — keep it under 5MB." },
+      { error: "That file is too heavy to sink with you. Keep it under 5MB." },
       { status: 400 }
     );
   }

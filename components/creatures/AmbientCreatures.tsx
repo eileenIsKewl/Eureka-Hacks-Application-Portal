@@ -16,7 +16,7 @@ const LAYOUT = [
 ];
 
 /**
- * Slow-drifting decorative background elements — pure texture, never
+ * Slow-drifting decorative background elements, pure texture, never
  * interactive. Swap art by adding /assets/creatures/ambient-{zoneId}-{n}.svg
  * (n = 1, 2, 3 across the layout slots; see CreatureSlot and the README in
  * public/assets/creatures).

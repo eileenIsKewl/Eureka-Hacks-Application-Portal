@@ -13,7 +13,7 @@ interface ZoneFormStepProps {
 
 /**
  * Generic, config-driven step used by the Sunlight, Twilight, Midnight, and
- * Abyssal zones — the actual field list for each comes from lib/zones.ts, so
+ * Abyssal zones. The actual field list for each comes from lib/zones.ts, so
  * this component never needs to know about individual questions.
  */
 export function ZoneFormStep({ zoneId }: ZoneFormStepProps) {

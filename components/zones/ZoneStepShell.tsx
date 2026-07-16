@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { getZone } from "@/lib/zones";
 import type { ZoneId } from "@/lib/data/types";
-import { DepthGauge } from "@/components/DepthGauge";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ReactionMascot } from "@/components/creatures/ReactionMascot";
@@ -22,7 +21,7 @@ const SAVE_LABEL: Record<string, string> = {
   idle: "",
   saving: "Autosaving…",
   saved: "Saved to the depths",
-  error: "Couldn't reach the surface — still saved on this device",
+  error: "Couldn't reach the surface, but it's still saved on this device",
 };
 
 export function ZoneStepShell({
@@ -39,10 +38,6 @@ export function ZoneStepShell({
 
   return (
     <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col justify-center px-6 py-16">
-      <div className="mb-8">
-        <DepthGauge currentZone={zoneId} />
-      </div>
-
       <motion.div
         key={zoneId}
         initial={{ opacity: 0, y: 36, filter: "blur(4px)" }}

@@ -43,7 +43,7 @@ export function minLength(min: number) {
     const req = validateRequired(value);
     if (req) return req;
     if (value!.trim().length < min) {
-      return `Give it a bit more depth — at least ${min} characters.`;
+      return `Give it a bit more depth, at least ${min} characters.`;
     }
     return null;
   };

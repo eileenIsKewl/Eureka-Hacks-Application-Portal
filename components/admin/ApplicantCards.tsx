@@ -16,7 +16,7 @@ export function ApplicantCards({ applicants }: ApplicantCardsProps) {
   if (applicants.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-white/15 py-16 text-center text-white/40">
-        Empty water. No applicants match — try wider nets.
+        Empty water. No applicants match. Try wider nets.
       </div>
     );
   }

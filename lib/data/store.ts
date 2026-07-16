@@ -7,7 +7,7 @@ import type {
 /**
  * Storage-agnostic contract for applicant persistence. Swap the SQLite/Prisma
  * implementation for Postgres (or anything else) by writing a new class that
- * satisfies this interface — nothing above this layer needs to change.
+ * satisfies this interface. Nothing above this layer needs to change.
  */
 export interface ApplicantStore {
   create(): Promise<ApplicantRecord>;

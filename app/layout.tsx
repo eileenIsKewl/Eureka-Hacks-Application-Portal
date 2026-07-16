@@ -15,7 +15,7 @@ const righteous = Righteous({
 });
 
 export const metadata: Metadata = {
-  title: "EurekaHacks — The Descent",
+  title: "EurekaHacks · The Descent",
   description:
     "Apply to EurekaHacks: a hackathon application that sinks with you, from the sunlit surface down to the trench.",
 };

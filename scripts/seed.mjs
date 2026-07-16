@@ -62,7 +62,7 @@ const applicants = [
     technicalSkills: "Figma, React, accessibility auditing, Swift",
     portfolioUrl: "https://priyan.design",
     dietaryRestrictions: "Gluten-free",
-    essayWhy: "Hackathons are where my best design work happens — constraints force clarity.",
+    essayWhy: "Hackathons are where my best design work happens. Constraints force clarity.",
     essayLearn: "Hardware prototyping, I've only ever shipped software.",
     essayProject:
       "Redesigned a hospital intake kiosk flow that cut average wait-time confusion complaints by half in user testing.",

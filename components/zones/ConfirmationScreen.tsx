@@ -43,7 +43,7 @@ export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
         transition={{ delay: 0.35, duration: 0.6 }}
         className="relative z-10 max-w-md text-white/70"
       >
-        Your application just reached the bottom of the trench — the deepest
+        Your application just reached the bottom of the trench, the deepest
         point we go. It&apos;s been logged, and our crew will surface with a
         decision soon.
       </motion.p>
@@ -55,7 +55,7 @@ export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="relative z-10 mt-6 font-mono text-xs text-white/30"
         >
-          Dive record: {applicantId}
+          Dive record {applicantId}
         </motion.p>
       )}
     </div>

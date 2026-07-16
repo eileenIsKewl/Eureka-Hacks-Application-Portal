@@ -20,7 +20,7 @@ export default function Home() {
         </h1>
         <p className="mb-10 max-w-md text-balance text-sunlight-950/80">
           The application to EurekaHacks isn&apos;t a form, it&apos;s a
-          descent — five ocean zones, each one darker and deeper than the
+          descent. Five ocean zones, each one darker and deeper than the
           last. Bring a light.
         </p>
         <Link href="/apply">

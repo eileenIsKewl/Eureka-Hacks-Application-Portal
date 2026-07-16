@@ -56,11 +56,11 @@ export const ZONES: ZoneConfig[] = [
     id: "sunlight",
     order: 0,
     name: "Sunlight Zone",
-    depthLabel: "0–200m · Surface Light",
+    depthLabel: "0-200m · Surface Light",
     depthMeters: 0,
     tagline: "Warm water, clear light. Tell us who's diving in.",
     description:
-      "Every descent starts here, where the sun still reaches. Basic info only — the deep stuff comes later.",
+      "Every descent starts here, where the sun still reaches. Basic info only, the deeper stuff comes later.",
     ctaLabel: "Begin the descent",
     theme: {
       bg: "from-sunlight-300 via-sunlight-400 to-sunlight-600",
@@ -108,7 +108,7 @@ export const ZONES: ZoneConfig[] = [
     id: "twilight",
     order: 1,
     name: "Twilight Zone",
-    depthLabel: "200–1,000m · Fading Light",
+    depthLabel: "200-1,000m · Fading Light",
     depthMeters: 200,
     tagline: "The light is dimming. Time to talk about where you've been learning.",
     description:
@@ -168,7 +168,7 @@ export const ZONES: ZoneConfig[] = [
     id: "midnight",
     order: 2,
     name: "Midnight Zone",
-    depthLabel: "1,000–4,000m · No Sunlight",
+    depthLabel: "1,000-4,000m · No Sunlight",
     depthMeters: 1000,
     tagline: "Total darkness now. Only the things you've built give off light.",
     description:
@@ -191,8 +191,8 @@ export const ZONES: ZoneConfig[] = [
         validate: validateRequired,
         options: [
           { value: "0", label: "This is my first one!" },
-          { value: "1-2", label: "1–2" },
-          { value: "3-5", label: "3–5" },
+          { value: "1-2", label: "1-2" },
+          { value: "3-5", label: "3-5" },
           { value: "6+", label: "6 or more" },
         ],
       },
@@ -226,9 +226,9 @@ export const ZONES: ZoneConfig[] = [
     id: "abyssal",
     order: 3,
     name: "Abyssal Zone",
-    depthLabel: "4,000–6,000m · Crushing Dark",
+    depthLabel: "4,000-6,000m · Crushing Dark",
     depthMeters: 4000,
-    tagline: "This is the deep dark. Only the bioluminescent things survive here — like real motivation.",
+    tagline: "This is the deep dark. Only the bioluminescent things survive here, like real motivation.",
     description:
       "Near-freezing, near-black, and honest. Tell us why you're really here.",
     ctaLabel: "Drop into the trench",
@@ -274,11 +274,11 @@ export const ZONES: ZoneConfig[] = [
     id: "hadal",
     order: 4,
     name: "Hadal Zone",
-    depthLabel: "6,000–11,000m · The Trench",
+    depthLabel: "6,000-11,000m · The Trench",
     depthMeters: 6000,
     tagline: "The deepest point on Earth. One last thing, then send it down.",
     description:
-      "Almost nothing survives this deep — you're about to be the exception. Upload your resume, look back over everything, and release it into the dark.",
+      "Almost nothing survives this deep. You're about to be the exception. Upload your resume, look back over everything, and release it into the dark.",
     ctaLabel: "Send it down",
     theme: {
       bg: "from-hadal-700 via-hadal-800 to-hadal-950",
@@ -310,7 +310,7 @@ export function formatFieldValue(
   field: FieldConfig,
   value: string | null | undefined
 ): string {
-  if (!value) return "—";
+  if (!value) return "N/A";
   if (field.options) {
     return field.options.find((o) => o.value === value)?.label ?? value;
   }

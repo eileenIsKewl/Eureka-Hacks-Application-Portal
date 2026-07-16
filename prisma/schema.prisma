@@ -9,7 +9,7 @@ datasource db {
 
 // ReviewStatus: "PENDING" | "ACCEPTED" | "REJECTED" | "WAITLISTED"
 // ZoneId: "sunlight" | "twilight" | "midnight" | "abyssal" | "hadal"
-// (SQLite has no native enum type — validated at the app layer, see lib/data/types.ts)
+// (SQLite has no native enum type, validated at the app layer, see lib/data/types.ts)
 
 model Applicant {
   id String @id @default(cuid())
@@ -21,30 +21,30 @@ model Applicant {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  // Sunlight Zone — welcome & basic info
+  // Sunlight Zone: welcome and basic info
   fullName String?
   email    String? @unique
   pronouns String?
   phone    String?
 
-  // Twilight Zone — education & background
+  // Twilight Zone: education and background
   school           String?
   educationLevel   String?
   gradYear         String?
   fieldOfStudy     String?
 
-  // Midnight Zone — skills & hackathon experience
+  // Midnight Zone: skills and hackathon experience
   hackathonsAttended  String?
   technicalSkills     String?
   portfolioUrl        String?
   dietaryRestrictions String?
 
-  // Abyssal Zone — essays & motivation
+  // Abyssal Zone: essays and motivation
   essayWhy     String?
   essayLearn   String?
   essayProject String?
 
-  // Hadal Zone — resume
+  // Hadal Zone: resume
   resumeFileName String?
   resumeMimeType String?
   resumeData     Bytes?

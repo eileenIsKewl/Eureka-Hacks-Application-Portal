@@ -20,7 +20,7 @@ interface ZoneMascotProps {
 }
 
 /**
- * The companion creature that swims alongside the depth gauge — one per
+ * The companion creature that swims alongside the depth gauge, one per
  * zone, growing more bioluminescent as the descent continues. Swap art by
  * adding /assets/creatures/{zoneId}-companion.svg (see CreatureSlot).
  */

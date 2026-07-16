@@ -29,7 +29,7 @@ export async function POST(
   if (missing.length > 0) {
     return NextResponse.json(
       {
-        error: "The dive isn't complete yet — a few things still need answers before you can send it down.",
+        error: "The dive isn't complete yet. A few things still need answers before you can send it down.",
         missing,
       },
       { status: 400 }

@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { getZone } from "@/lib/zones";
-import { DepthGauge } from "@/components/DepthGauge";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useApplication } from "@/hooks/useApplication";
@@ -56,23 +55,19 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
   async function handleSubmit() {
     setSubmitError(null);
     setSubmitting(true);
-    const ok = await submitApplication();
+    const result = await submitApplication();
     setSubmitting(false);
-    if (ok) {
+    if (result.ok) {
       onSubmitted();
+    } else if (result.missing && result.missing.length > 0) {
+      setSubmitError(`A few things are still missing before this can go down for good. Add ${result.missing.join(", ")} and try again.`);
     } else {
-      setSubmitError(
-        "Something is still missing before this can go down for good — double check every zone above."
-      );
+      setSubmitError("Something is still missing before this can go down for good. Double check every zone above.");
     }
   }
 
   return (
     <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col justify-center px-6 py-16">
-      <div className="mb-8">
-        <DepthGauge currentZone="hadal" />
-      </div>
-
       <motion.div
         initial={{ opacity: 0, y: 36, filter: "blur(4px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -84,7 +79,9 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
         <p className="mb-8 max-w-lg text-white/70">{zone.description}</p>
 
         <Card className={`mb-8 ${zone.theme.glow}`}>
-          <h2 className="mb-3 font-display text-lg text-glow-300">Resume</h2>
+          <h2 className="mb-3 font-display text-lg text-glow-300">
+            Resume <span className="text-sm text-glow-400">*</span>
+          </h2>
           <p className="mb-4 text-sm text-white/60">
             One last artifact to carry into the dark.
           </p>

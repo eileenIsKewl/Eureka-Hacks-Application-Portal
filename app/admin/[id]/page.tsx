@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ApplicantDetail } from "@/components/admin/ApplicantDetail";
 
 export const metadata: Metadata = {
-  title: "Applicant file — EurekaHacks Control Room",
+  title: "Applicant file · EurekaHacks Control Room",
 };
 
 export default async function ApplicantDetailPage({

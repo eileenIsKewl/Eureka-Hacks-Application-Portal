@@ -36,7 +36,7 @@ export function ScorePanel({
         <div className="text-right">
           <p className="text-xs uppercase tracking-wide text-white/40">Average</p>
           <p className="text-xl font-semibold text-glow-400">
-            {average !== null ? average.toFixed(1) : "—"}
+            {average !== null ? average.toFixed(1) : "N/A"}
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export function ScorePanel({
             <div className="mb-1.5 flex items-center justify-between text-sm">
               <span className="text-white/70">{c.label}</span>
               <span className="font-mono text-glow-400">
-                {values[c.key] !== null ? values[c.key]!.toFixed(1) : "—"}
+                {values[c.key] !== null ? values[c.key]!.toFixed(1) : "N/A"}
               </span>
             </div>
             <input

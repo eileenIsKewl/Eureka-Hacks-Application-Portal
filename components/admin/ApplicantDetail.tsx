@@ -148,7 +148,7 @@ export function ApplicantDetail({ id }: ApplicantDetailProps) {
       </div>
 
       <p className="-mt-3 text-xs text-white/30">
-        Keyboard: <kbd className="text-white/50">A</kbd> accept ·{" "}
+        Keyboard shortcuts <kbd className="text-white/50">A</kbd> accept ·{" "}
         <kbd className="text-white/50">W</kbd> waitlist ·{" "}
         <kbd className="text-white/50">R</kbd> reject ·{" "}
         <kbd className="text-white/50">↑↓</kbd> move between applicants

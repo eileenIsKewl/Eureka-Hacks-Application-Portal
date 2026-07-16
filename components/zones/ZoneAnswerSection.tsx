@@ -11,7 +11,7 @@ interface ZoneAnswerSectionProps {
 }
 
 /**
- * Read-only Q&A block for one zone — shared by the applicant-facing review
+ * Read-only Q&A block for one zone, shared by the applicant-facing review
  * screen and the admin detail view, so both read as "the same product."
  */
 export function ZoneAnswerSection({ zoneId, values, onEdit }: ZoneAnswerSectionProps) {

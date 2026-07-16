@@ -16,7 +16,7 @@ export function StatsBar({ applicants }: StatsBarProps) {
   const avg =
     scored.length > 0
       ? (scored.reduce((sum, s) => sum + s, 0) / scored.length).toFixed(1)
-      : "—";
+      : "N/A";
 
   const stats = [
     { label: "Total applicants", value: total },
