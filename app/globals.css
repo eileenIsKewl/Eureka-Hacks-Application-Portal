@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-space-grotesk), "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-display: var(--font-righteous), "Righteous", ui-sans-serif, sans-serif;
+
+  /* Sunlight Zone — bright surface blue */
+  --color-sunlight-50: #f0fbff;
+  --color-sunlight-100: #dff5ff;
+  --color-sunlight-200: #b9eaff;
+  --color-sunlight-300: #8adcff;
+  --color-sunlight-400: #58c8f5;
+  --color-sunlight-500: #34aee0;
+  --color-sunlight-600: #2189bc;
+  --color-sunlight-700: #1c6d97;
+  --color-sunlight-800: #185874;
+  --color-sunlight-900: #154860;
+  --color-sunlight-950: #0b2a3a;
+
+  /* Twilight Zone — fading blue */
+  --color-twilight-50: #eef3fb;
+  --color-twilight-100: #d9e4f4;
+  --color-twilight-200: #b3c8e8;
+  --color-twilight-300: #8aa9d8;
+  --color-twilight-400: #6288c0;
+  --color-twilight-500: #4a6ea3;
+  --color-twilight-600: #3a5783;
+  --color-twilight-700: #2d4468;
+  --color-twilight-800: #22334e;
+  --color-twilight-900: #182437;
+  --color-twilight-950: #0d141f;
+
+  /* Midnight Zone — dark navy, small bioluminescent accents */
+  --color-midnight-50: #e9ebf5;
+  --color-midnight-100: #c7cbe0;
+  --color-midnight-200: #9aa1c4;
+  --color-midnight-300: #6c73a0;
+  --color-midnight-400: #454b78;
+  --color-midnight-500: #2c3159;
+  --color-midnight-600: #1f2444;
+  --color-midnight-700: #171a34;
+  --color-midnight-800: #101226;
+  --color-midnight-900: #0a0c1a;
+  --color-midnight-950: #05060d;
+
+  /* Abyssal Zone — near-black, deep purple undertones */
+  --color-abyssal-50: #ece7f5;
+  --color-abyssal-100: #d3c7e8;
+  --color-abyssal-200: #a98fd0;
+  --color-abyssal-300: #7c5cb0;
+  --color-abyssal-400: #573f8a;
+  --color-abyssal-500: #3d2b66;
+  --color-abyssal-600: #2c1f4d;
+  --color-abyssal-700: #1f1638;
+  --color-abyssal-800: #150e27;
+  --color-abyssal-900: #0d081a;
+  --color-abyssal-950: #060410;
+
+  /* Hadal Zone — the trench, almost fully black */
+  --color-hadal-50: #d8d8dd;
+  --color-hadal-100: #b0b0ba;
+  --color-hadal-200: #85858f;
+  --color-hadal-300: #5c5c68;
+  --color-hadal-400: #3d3d47;
+  --color-hadal-500: #26262e;
+  --color-hadal-600: #1a1a20;
+  --color-hadal-700: #121216;
+  --color-hadal-800: #0b0b0e;
+  --color-hadal-900: #050506;
+  --color-hadal-950: #000000;
+
+  /* Bioluminescent accent — glowing cyan/teal, used sparingly */
+  --color-glow-300: #a6fff0;
+  --color-glow-400: #5ef2dd;
+  --color-glow-500: #22e0c4;
+  --color-glow-600: #10b8a0;
+  --color-glow-700: #0c8f7d;
+
+  --animate-bubble-rise: bubble-rise linear infinite;
+  --animate-drift-float: drift-float ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow ease-in-out infinite;
+  --animate-fin-sway: fin-sway ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(var(--bubble-drift, 20px)) scale(1.1);
+    opacity: 0;
   }
 }
 
+@keyframes drift-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(12px, -18px) rotate(4deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 14px currentColor);
+  }
+}
+
+@keyframes fin-sway {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@utility shadow-glow-sunlight {
+  box-shadow:
+    0 0 30px -6px var(--color-sunlight-400),
+    0 0 10px -2px var(--color-sunlight-300);
+}
+@utility shadow-glow-twilight {
+  box-shadow:
+    0 0 30px -6px var(--color-twilight-400),
+    0 0 10px -2px var(--color-glow-500);
+}
+@utility shadow-glow-midnight {
+  box-shadow:
+    0 0 34px -6px var(--color-midnight-400),
+    0 0 12px -2px var(--color-glow-500);
+}
+@utility shadow-glow-abyssal {
+  box-shadow:
+    0 0 38px -6px var(--color-abyssal-300),
+    0 0 14px -2px var(--color-glow-500);
+}
+@utility shadow-glow-hadal {
+  box-shadow:
+    0 0 42px -4px var(--color-glow-600),
+    0 0 16px -2px var(--color-glow-400);
+}
+@utility shadow-glow-teal {
+  box-shadow:
+    0 0 24px -4px var(--color-glow-500),
+    0 0 6px -1px var(--color-glow-400);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-hadal-950);
+  color: white;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-glow-500);
+  color: var(--color-hadal-950);
+}
+
+/* Thin, glow-tinted scrollbar to match the underwater feel */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-glow-600) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-glow-700);
+  border-radius: 999px;
 }
