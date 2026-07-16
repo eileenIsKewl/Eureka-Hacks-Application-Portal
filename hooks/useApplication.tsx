@@ -171,7 +171,6 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const persist = useCallback(

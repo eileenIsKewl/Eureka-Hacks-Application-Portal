@@ -3,22 +3,32 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ApplicantRecord, ReviewInput } from "@/lib/data/types";
 
+async function fetchApplicants(): Promise<ApplicantRecord[] | null> {
+  const res = await fetch("/api/applicants");
+  if (!res.ok) return null;
+  return res.json();
+}
+
 export function useApplicants() {
   const [applicants, setApplicants] = useState<ApplicantRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const refresh = useCallback(async () => {
-    const res = await fetch("/api/applicants");
-    if (res.ok) {
-      const data: ApplicantRecord[] = await res.json();
-      setApplicants(data);
-    }
-    setLoading(false);
+  useEffect(() => {
+    let cancelled = false;
+    fetchApplicants().then((data) => {
+      if (cancelled) return;
+      if (data) setApplicants(data);
+      setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
+  const refresh = useCallback(async () => {
+    const data = await fetchApplicants();
+    if (data) setApplicants(data);
+  }, []);
 
   const updateReview = useCallback(
     async (id: string, review: ReviewInput) => {
