@@ -15,7 +15,7 @@ type Variant =
 // target changing color.
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
-    "bg-glow-500 text-hadal-950 hover:bg-glow-400 shadow-[0_5px_0_0_var(--color-glow-700)] active:shadow-[0_1px_0_0_var(--color-glow-700)] disabled:bg-glow-700 disabled:text-hadal-500 disabled:shadow-none",
+    "bg-sunlight-400 text-sunlight-950 hover:bg-sunlight-300 shadow-[0_5px_0_0_var(--color-sunlight-700)] active:shadow-[0_1px_0_0_var(--color-sunlight-700)] disabled:bg-sunlight-700 disabled:text-hadal-500 disabled:shadow-none",
   ghost:
     "bg-white/8 text-white border border-white/15 hover:bg-white/12 hover:border-glow-500/50 shadow-[0_4px_0_0_rgba(255,255,255,0.12)] active:shadow-[0_1px_0_0_rgba(255,255,255,0.12)] disabled:opacity-40 disabled:shadow-none",
   accept:

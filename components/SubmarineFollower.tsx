@@ -35,7 +35,7 @@ export function SubmarineFollower() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed right-2 z-30 h-36 w-56 sm:right-6 sm:h-52 sm:w-80 lg:right-10 lg:h-64 lg:w-[26rem]"
+      className="pointer-events-none fixed right-1 z-30 h-44 w-64 sm:right-2 sm:h-64 sm:w-96 lg:right-3 lg:h-80 lg:w-[32rem] xl:right-4"
       style={{ top }}
       initial={false}
       animate={{ opacity: sunlightInView ? 0 : 1 }}

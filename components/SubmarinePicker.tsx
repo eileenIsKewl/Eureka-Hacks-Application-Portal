@@ -48,15 +48,15 @@ export function SubmarinePicker() {
         />
       </div>
 
-      {/* Stand the submarine rests on: two flush trapezoids, stacked in normal flow so they can never gap or overlap */}
+      {/* Stand the submarine rests on: two flush trapezoids, same width, tapering continuously from top to bottom */}
       <div className="-mt-6 flex w-64 flex-col items-center sm:w-80">
         <div
           className="h-7 w-full bg-[#f2e5b8] sm:h-9"
-          style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0% 100%)" }}
+          style={{ clipPath: "polygon(10% 0, 90% 0, 82% 100%, 18% 100%)" }}
         />
         <div
-          className="h-5 w-[78%] bg-[#b8985c] sm:h-6"
-          style={{ clipPath: "polygon(6% 0, 94% 0, 84% 100%, 16% 100%)" }}
+          className="h-5 w-full bg-[#b8985c] sm:h-6"
+          style={{ clipPath: "polygon(18% 0, 82% 0, 74% 100%, 26% 100%)" }}
         />
       </div>
 
