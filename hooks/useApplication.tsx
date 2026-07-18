@@ -289,13 +289,6 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
 
   const goToZone = advanceToZone;
 
-  const goNext = useCallback(async () => {
-    const idx = ZONES.findIndex((z) => z.id === currentZoneId);
-    if (idx < ZONES.length - 1) {
-      await advanceToZone(ZONES[idx + 1].id);
-    }
-  }, [currentZoneId, advanceToZone]);
-
   const submitApplication = useCallback(async (): Promise<{
     ok: boolean;
     missing?: string[];
@@ -345,7 +338,6 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     touchZone,
     goToZone,
     goNext,
-    goBack,
     submitApplication,
     markResumeUploaded,
     startNewApplication,
