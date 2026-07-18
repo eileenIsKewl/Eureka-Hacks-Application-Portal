@@ -48,20 +48,18 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
   }
 
   return (
-    <section
-      id={zoneSectionId(zoneId)}
-      className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32"
-    >
+    <section className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32">
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={14} />
       </ParallaxLayer>
 
       <motion.div
+        id={zoneSectionId(zoneId)}
         initial={{ opacity: 0, y: 70, scale: 0.97 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 mx-auto w-full max-w-2xl"
+        className="relative z-10 mx-auto w-full max-w-2xl scroll-mt-20"
       >
         <div className="mb-1 flex items-center gap-3">
           <h1 className={`font-display text-3xl ${zone.theme.text} sm:text-4xl`}>

@@ -28,14 +28,14 @@ export function SubmarineFollower() {
     damping: 18,
     mass: 0.8,
   });
-  const top = useTransform(smoothProgress, [0, 1], ["4%", "82%"]);
+  const top = useTransform(smoothProgress, [0, 1], ["4%", "58%"]);
 
   if (!loaded) return null;
 
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed right-1 z-30 h-44 w-64 sm:right-2 sm:h-64 sm:w-96 lg:right-3 lg:h-80 lg:w-[32rem] xl:right-4"
+      className="pointer-events-none fixed right-0 z-30 h-44 w-64 sm:h-64 sm:w-96 lg:h-80 lg:w-[32rem]"
       style={{ top }}
       initial={false}
       animate={{ opacity: sunlightInView ? 0 : 1 }}

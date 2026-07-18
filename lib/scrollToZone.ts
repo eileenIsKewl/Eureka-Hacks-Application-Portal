@@ -5,10 +5,10 @@ export function zoneSectionId(zoneId: ZoneId): string {
 }
 
 export function scrollToZone(zoneId: ZoneId) {
-  // Sections are taller than the viewport with their content centered, so
-  // centering the section (rather than snapping to its top) is what
-  // actually lands on the visible content instead of blank space above it.
+  // The id lives on the content block itself (not the taller outer <section>
+  // it sits inside), with scroll-mt-* handling the breathing room above it,
+  // so "start" lands consistently on the actual content every time.
   document
     .getElementById(zoneSectionId(zoneId))
-    ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    ?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
