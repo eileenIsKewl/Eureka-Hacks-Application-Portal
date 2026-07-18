@@ -29,47 +29,45 @@ export function SubmarinePicker() {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <p className="mb-3 text-xs uppercase tracking-[0.2em] text-sunlight-950/60">
+    <div className="flex w-full flex-col items-center">
+      <p className="mb-4 text-sm uppercase tracking-[0.2em] text-sunlight-950/60">
         Choose your submarine
       </p>
 
-      <div className="relative flex h-40 w-56 items-end justify-center">
-        <div className="relative z-10 flex h-36 w-56 items-center justify-center">
-          <CreatureSlot
-            asset={`submarine-${current.id}`}
-            folder="submarines"
-            alt={`${current.label} submarine`}
-            className="h-full w-full object-contain drop-shadow-[0_10px_12px_rgba(0,0,0,0.3)]"
-            fallback={
-              <GeometricSubmarine
-                body={current.body}
-                accent={current.accent}
-                className="h-full w-full"
-              />
-            }
-          />
-        </div>
-
-        {/* Stand the submarine rests on */}
-        <div className="absolute bottom-0 h-9 w-36">
-          <div
-            className="absolute inset-x-0 top-0 h-6 bg-[#f2e5b8]"
-            style={{ clipPath: "polygon(8% 0, 92% 0, 100% 100%, 0% 100%)" }}
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 h-4 bg-[#c2a968]"
-            style={{ clipPath: "polygon(4% 0, 96% 0, 88% 100%, 12% 100%)" }}
-          />
-        </div>
+      <div className="flex h-72 w-full max-w-xl items-end justify-center sm:h-96">
+        <CreatureSlot
+          asset={`submarine-${current.id}`}
+          folder="submarines"
+          alt={`${current.label} submarine`}
+          className="h-full w-full object-contain drop-shadow-[0_18px_20px_rgba(0,0,0,0.3)]"
+          fallback={
+            <GeometricSubmarine
+              body={current.body}
+              accent={current.accent}
+              className="h-full w-full"
+            />
+          }
+        />
       </div>
 
-      <div className="mt-3 flex items-center gap-4">
+      {/* Stand the submarine rests on: two flush trapezoids, stacked in normal flow so they can never gap or overlap */}
+      <div className="-mt-6 flex w-64 flex-col items-center sm:w-80">
+        <div
+          className="h-7 w-full bg-[#f2e5b8] sm:h-9"
+          style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0% 100%)" }}
+        />
+        <div
+          className="h-5 w-[78%] bg-[#b8985c] sm:h-6"
+          style={{ clipPath: "polygon(6% 0, 94% 0, 84% 100%, 16% 100%)" }}
+        />
+      </div>
+
+      <div className="mt-8 flex items-center gap-6">
         <button
           type="button"
           onClick={() => cycle(-1)}
           aria-label="Previous submarine"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-sunlight-950/20 bg-white/40 text-sunlight-950 shadow-[0_3px_0_0_rgba(11,42,58,0.25)] transition-transform active:translate-y-[3px] active:shadow-[0_1px_0_0_rgba(11,42,58,0.25)]"
+          className="flex h-14 w-14 items-center justify-center rounded-full border border-sunlight-950/20 bg-white/40 text-xl text-sunlight-950 shadow-[0_4px_0_0_rgba(11,42,58,0.25)] transition-transform active:translate-y-[4px] active:shadow-[0_1px_0_0_rgba(11,42,58,0.25)]"
         >
           ◀
         </button>
@@ -77,7 +75,7 @@ export function SubmarinePicker() {
         <Button
           variant="primary"
           onClick={select}
-          className={cn("min-w-[7rem]", justSelected && "bg-glow-400")}
+          className={cn("min-w-[9rem] text-lg", justSelected && "bg-glow-400")}
         >
           {justSelected ? "Selected ✓" : "Select"}
         </Button>
@@ -86,7 +84,7 @@ export function SubmarinePicker() {
           type="button"
           onClick={() => cycle(1)}
           aria-label="Next submarine"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-sunlight-950/20 bg-white/40 text-sunlight-950 shadow-[0_3px_0_0_rgba(11,42,58,0.25)] transition-transform active:translate-y-[3px] active:shadow-[0_1px_0_0_rgba(11,42,58,0.25)]"
+          className="flex h-14 w-14 items-center justify-center rounded-full border border-sunlight-950/20 bg-white/40 text-xl text-sunlight-950 shadow-[0_4px_0_0_rgba(11,42,58,0.25)] transition-transform active:translate-y-[4px] active:shadow-[0_1px_0_0_rgba(11,42,58,0.25)]"
         >
           ▶
         </button>

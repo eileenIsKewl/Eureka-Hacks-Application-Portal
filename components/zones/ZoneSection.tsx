@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { ReactionMascot } from "@/components/creatures/ReactionMascot";
 import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
 import { BubbleField } from "@/components/ui/BubbleField";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { useApplication } from "@/hooks/useApplication";
 
 interface ZoneSectionProps {

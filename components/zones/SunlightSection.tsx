@@ -51,7 +51,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 mx-auto w-full max-w-5xl"
+        className="relative z-10 mx-auto w-full max-w-7xl"
       >
         <p className="mb-2 text-xs uppercase tracking-[0.3em] text-sunlight-950/60">
           EurekaHacks · {zone.depthLabel}
@@ -60,7 +60,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
           How far down will you go?
         </h1>
 
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           {/* Glass form card */}
           <div className="rounded-3xl border border-white/50 bg-white/25 p-8 shadow-[0_20px_50px_-20px_rgba(11,42,58,0.4)] backdrop-blur-xl">
             <h2 className="mb-1 font-display text-2xl text-sunlight-950">Welcome!</h2>
