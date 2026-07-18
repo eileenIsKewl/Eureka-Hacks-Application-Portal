@@ -43,14 +43,26 @@ export function FormField({
     <div className="flex flex-col gap-2">
       <label
         htmlFor={config.name}
-        className="flex items-baseline justify-between text-sm font-medium text-white/80"
+        className={cn(
+          "flex items-baseline justify-between text-sm font-medium",
+          tone === "light" ? "text-sunlight-950/85" : "text-white/80"
+        )}
       >
         <span>
           {config.label}
-          {config.required && <span className="ml-1 text-glow-400">*</span>}
+          {config.required && (
+            <span className={tone === "light" ? "ml-1 text-sunlight-800" : "ml-1 text-glow-400"}>
+              *
+            </span>
+          )}
         </span>
         {config.maxLength && (
-          <span className="text-xs font-normal text-white/35">
+          <span
+            className={cn(
+              "text-xs font-normal",
+              tone === "light" ? "text-sunlight-950/40" : "text-white/35"
+            )}
+          >
             {value.length}/{config.maxLength}
           </span>
         )}
@@ -66,7 +78,7 @@ export function FormField({
           rows={4}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          className={cn(baseControlClasses, borderClass, "resize-none")}
+          className={cn(baseControlClasses, TONE_CLASSES[tone], borderClass, "resize-none")}
         />
       ) : config.type === "select" ? (
         <select
@@ -77,8 +89,9 @@ export function FormField({
           onBlur={onBlur}
           className={cn(
             baseControlClasses,
+            TONE_CLASSES[tone],
             borderClass,
-            !value && "text-white/35"
+            !value && (tone === "light" ? "text-sunlight-950/40" : "text-white/35")
           )}
         >
           <option value="" disabled style={SELECT_OPTION_STYLE}>
@@ -99,7 +112,7 @@ export function FormField({
           placeholder={config.placeholder}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          className={cn(baseControlClasses, borderClass)}
+          className={cn(baseControlClasses, TONE_CLASSES[tone], borderClass)}
         />
       )}
 
