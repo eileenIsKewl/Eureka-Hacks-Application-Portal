@@ -40,7 +40,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
   return (
     <section
       id={zoneSectionId("sunlight")}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-16 pl-8 sm:pl-12"
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-16"
     >
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={10} />

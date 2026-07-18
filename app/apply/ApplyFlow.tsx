@@ -1,10 +1,9 @@
 "use client";
 
 import type { ZoneId } from "@/lib/data/types";
-import { scrollToZone, zoneSectionId } from "@/lib/scrollToZone";
+import { scrollToZone } from "@/lib/scrollToZone";
 import { ApplicationProvider, useApplication } from "@/hooks/useApplication";
 import { SubmarineProvider } from "@/hooks/useSubmarineChoice";
-import { useSectionInView } from "@/hooks/useSectionInView";
 import { SubmarineFollower } from "@/components/SubmarineFollower";
 import { DescentBackground } from "@/components/zones/DescentBackground";
 import { SunlightSection } from "@/components/zones/SunlightSection";
@@ -16,7 +15,6 @@ import { ConfirmationScreen } from "@/components/zones/ConfirmationScreen";
 
 function ApplyContent() {
   const { loading, submitted, applicantId, goToZone } = useApplication();
-  const sunlightInView = useSectionInView(zoneSectionId("sunlight"));
 
   if (loading) {
     return (
@@ -41,7 +39,7 @@ function ApplyContent() {
   return (
     <div className="relative">
       <DescentBackground />
-      <SubmarineFollower hidden={sunlightInView} />
+      <SubmarineFollower />
 
       <SunlightSection onContinue={() => continueTo("twilight")} />
       <TwilightZone onContinue={() => continueTo("midnight")} />

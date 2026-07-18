@@ -3,41 +3,42 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { getSubmarine } from "@/lib/submarines";
 import { useSubmarineChoice } from "@/hooks/useSubmarineChoice";
+import { useSectionInView } from "@/hooks/useSectionInView";
+import { zoneSectionId } from "@/lib/scrollToZone";
 import { CreatureSlot } from "@/components/creatures/CreatureSlot";
 import { GeometricSubmarine } from "@/components/creatures/GeometricSubmarine";
-
-interface SubmarineFollowerProps {
-  /** True while the Sunlight section (which already shows the submarine in its own picker) is on screen. */
-  hidden: boolean;
-}
 
 /**
  * Your chosen submarine, pinned to the edge of the screen and sinking down
  * with you as you scroll. useScroll tracks raw scroll progress; useSpring
  * adds the trailing, slightly-behind-you lag so it feels like it's actually
  * being dragged through water rather than snapped to a scrollbar. Hidden
- * while the Sunlight section is in view so it doesn't duplicate the picker.
+ * while the Sunlight section is in view so it doesn't duplicate the picker
+ * there. Watches its own visibility (rather than taking it as a prop) since
+ * this component only mounts once the real sections are in the DOM, which
+ * is exactly when the IntersectionObserver needs to attach.
  */
-export function SubmarineFollower({ hidden }: SubmarineFollowerProps) {
+export function SubmarineFollower() {
   const { submarineId, loaded } = useSubmarineChoice();
   const sub = getSubmarine(submarineId);
+  const sunlightInView = useSectionInView(zoneSectionId("sunlight"));
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 35,
     damping: 18,
     mass: 0.8,
   });
-  const top = useTransform(smoothProgress, [0, 1], ["4%", "92%"]);
+  const top = useTransform(smoothProgress, [0, 1], ["4%", "82%"]);
 
   if (!loaded) return null;
 
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed right-3 z-30 h-20 w-32 sm:right-6 sm:h-24 sm:w-40 lg:right-10 lg:h-28 lg:w-48"
+      className="pointer-events-none fixed right-2 z-30 h-36 w-56 sm:right-6 sm:h-52 sm:w-80 lg:right-10 lg:h-64 lg:w-[26rem]"
       style={{ top }}
       initial={false}
-      animate={{ opacity: hidden ? 0 : 1 }}
+      animate={{ opacity: sunlightInView ? 0 : 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <motion.div
@@ -49,7 +50,7 @@ export function SubmarineFollower({ hidden }: SubmarineFollowerProps) {
           asset={`submarine-${sub.id}`}
           folder="submarines"
           alt="Your submarine"
-          className="h-full w-full object-contain drop-shadow-[0_14px_18px_rgba(0,0,0,0.4)]"
+          className="h-full w-full object-contain drop-shadow-[0_20px_26px_rgba(0,0,0,0.4)]"
           fallback={
             <GeometricSubmarine body={sub.body} accent={sub.accent} className="h-full w-full" />
           }

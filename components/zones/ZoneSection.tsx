@@ -50,7 +50,7 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
   return (
     <section
       id={zoneSectionId(zoneId)}
-      className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32 pl-8 sm:pl-12"
+      className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32"
     >
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={14} />
