@@ -262,40 +262,47 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     });
   }, []);
 
-  const goToZone = useCallback(
+  // Only ever moves the persisted "furthest zone reached" forward. In the
+  // scrolling layout every section stays mounted, so a user revisiting an
+  // earlier section and clicking its continue button shouldn't regress the
+  // progress admins see.
+  const advanceToZone = useCallback(
     async (zoneId: ZoneId) => {
-      setCurrentZoneId(zoneId);
-      persist(values, zoneId);
-      if (applicantId) {
-        setSaveStatus("saving");
-        try {
-          const res = await fetch(`/api/applicants/${applicantId}`, {
+      setCurrentZoneId((prev) => {
+        const shouldAdvance = getZone(zoneId).order >= getZone(prev).order;
+        const target = shouldAdvance ? zoneId : prev;
+        persist(values, target);
+        if (applicantId) {
+          setSaveStatus("saving");
+          fetch(`/api/applicants/${applicantId}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ currentZone: zoneId }),
-          });
-          setSaveStatus(res.ok ? "saved" : "error");
-        } catch {
-          setSaveStatus("error");
+            body: JSON.stringify({ currentZone: target }),
+          })
+            .then((res) => setSaveStatus(res.ok ? "saved" : "error"))
+            .catch(() => setSaveStatus("error"));
         }
-      }
+        return target;
+      });
     },
     [applicantId, persist, values]
   );
 
+  const goToZone = advanceToZone;
+
   const goNext = useCallback(async () => {
     const idx = ZONES.findIndex((z) => z.id === currentZoneId);
     if (idx < ZONES.length - 1) {
-      await goToZone(ZONES[idx + 1].id);
+      await advanceToZone(ZONES[idx + 1].id);
     }
-  }, [currentZoneId, goToZone]);
+  }, [currentZoneId, advanceToZone]);
 
   const goBack = useCallback(async () => {
     const idx = ZONES.findIndex((z) => z.id === currentZoneId);
     if (idx > 0) {
-      await goToZone(ZONES[idx - 1].id);
+      await advanceToZone(ZONES[idx - 1].id);
     }
-  }, [currentZoneId, goToZone]);
+  }, [currentZoneId, advanceToZone]);
 
   const submitApplication = useCallback(async (): Promise<{
     ok: boolean;
