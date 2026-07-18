@@ -6,13 +6,19 @@ import { useSubmarineChoice } from "@/hooks/useSubmarineChoice";
 import { CreatureSlot } from "@/components/creatures/CreatureSlot";
 import { GeometricSubmarine } from "@/components/creatures/GeometricSubmarine";
 
+interface SubmarineFollowerProps {
+  /** True while the Sunlight section (which already shows the submarine in its own picker) is on screen. */
+  hidden: boolean;
+}
+
 /**
  * Your chosen submarine, pinned to the edge of the screen and sinking down
  * with you as you scroll. useScroll tracks raw scroll progress; useSpring
  * adds the trailing, slightly-behind-you lag so it feels like it's actually
- * being dragged through water rather than snapped to a scrollbar.
+ * being dragged through water rather than snapped to a scrollbar. Hidden
+ * while the Sunlight section is in view so it doesn't duplicate the picker.
  */
-export function SubmarineFollower() {
+export function SubmarineFollower({ hidden }: SubmarineFollowerProps) {
   const { submarineId, loaded } = useSubmarineChoice();
   const sub = getSubmarine(submarineId);
   const { scrollYProgress } = useScroll();
@@ -30,6 +36,9 @@ export function SubmarineFollower() {
       aria-hidden
       className="pointer-events-none fixed right-3 z-30 h-20 w-32 sm:right-6 sm:h-24 sm:w-40 lg:right-10 lg:h-28 lg:w-48"
       style={{ top }}
+      initial={false}
+      animate={{ opacity: hidden ? 0 : 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <motion.div
         animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
@@ -38,6 +47,7 @@ export function SubmarineFollower() {
       >
         <CreatureSlot
           asset={`submarine-${sub.id}`}
+          folder="submarines"
           alt="Your submarine"
           className="h-full w-full object-contain drop-shadow-[0_14px_18px_rgba(0,0,0,0.4)]"
           fallback={

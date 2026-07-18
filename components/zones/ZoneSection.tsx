@@ -28,10 +28,9 @@ const SAVE_LABEL: Record<string, string> = {
 };
 
 /**
- * One full-height panel of the scrolling descent. Each zone owns its own
- * background and decorations (instead of a shared fixed overlay), so the
- * color change simply happens as the page physically scrolls past the
- * boundary between two sections.
+ * One full-height panel of the scrolling descent. The background is one
+ * continuous gradient shared across every section (see DescentBackground);
+ * each section only contributes its own decorations and content on top.
  */
 export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExtra }: ZoneSectionProps) {
   const zone = getZone(zoneId);
@@ -51,12 +50,11 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
   return (
     <section
       id={zoneSectionId(zoneId)}
-      className={`relative flex min-h-screen w-full items-center overflow-hidden bg-gradient-to-b ${zone.theme.bg} px-6 py-20 pl-8 sm:pl-12`}
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-20 pl-8 sm:pl-12"
     >
       <div className="pointer-events-none absolute inset-0">
         <AmbientCreatures zoneId={zoneId} />
         <BubbleField count={14} />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/25" />
       </div>
 
       <motion.div

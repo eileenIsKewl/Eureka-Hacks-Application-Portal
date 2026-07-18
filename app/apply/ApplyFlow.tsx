@@ -3,9 +3,11 @@
 import type { ZoneId } from "@/lib/data/types";
 import { scrollToZone } from "@/lib/scrollToZone";
 import { ApplicationProvider, useApplication } from "@/hooks/useApplication";
+import { SubmarineProvider } from "@/hooks/useSubmarineChoice";
 import { useVisibleZone } from "@/hooks/useVisibleZone";
 import { DepthGauge } from "@/components/DepthGauge";
 import { SubmarineFollower } from "@/components/SubmarineFollower";
+import { DescentBackground } from "@/components/zones/DescentBackground";
 import { SunlightSection } from "@/components/zones/SunlightSection";
 import { TwilightZone } from "@/components/zones/TwilightZone";
 import { MidnightZone } from "@/components/zones/MidnightZone";
@@ -39,8 +41,9 @@ function ApplyContent() {
 
   return (
     <div className="relative">
+      <DescentBackground />
       <DepthGauge currentZone={visibleZoneId} />
-      <SubmarineFollower />
+      <SubmarineFollower hidden={visibleZoneId === "sunlight"} />
 
       <SunlightSection onContinue={() => continueTo("twilight")} />
       <TwilightZone onContinue={() => continueTo("midnight")} />
@@ -54,7 +57,9 @@ function ApplyContent() {
 export function ApplyFlow() {
   return (
     <ApplicationProvider>
-      <ApplyContent />
+      <SubmarineProvider>
+        <ApplyContent />
+      </SubmarineProvider>
     </ApplicationProvider>
   );
 }
