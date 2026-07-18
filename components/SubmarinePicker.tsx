@@ -29,27 +29,41 @@ export function SubmarinePicker() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <p className="text-xs uppercase tracking-[0.2em] text-sunlight-900/60">
+    <div className="flex flex-col items-center">
+      <p className="mb-3 text-xs uppercase tracking-[0.2em] text-sunlight-950/60">
         Choose your submarine
       </p>
 
-      <div className="flex h-36 w-56 items-center justify-center">
-        <CreatureSlot
-          asset={`submarine-${current.id}`}
-          alt={`${current.label} submarine`}
-          className="h-full w-full object-contain drop-shadow-[0_10px_12px_rgba(0,0,0,0.25)]"
-          fallback={
-            <GeometricSubmarine
-              body={current.body}
-              accent={current.accent}
-              className="h-full w-full"
-            />
-          }
-        />
+      <div className="relative flex h-40 w-56 items-end justify-center">
+        <div className="relative z-10 flex h-36 w-56 items-center justify-center">
+          <CreatureSlot
+            asset={`submarine-${current.id}`}
+            alt={`${current.label} submarine`}
+            className="h-full w-full object-contain drop-shadow-[0_10px_12px_rgba(0,0,0,0.3)]"
+            fallback={
+              <GeometricSubmarine
+                body={current.body}
+                accent={current.accent}
+                className="h-full w-full"
+              />
+            }
+          />
+        </div>
+
+        {/* Stand the submarine rests on */}
+        <div className="absolute bottom-0 h-9 w-36">
+          <div
+            className="absolute inset-x-0 top-0 h-6 bg-[#f2e5b8]"
+            style={{ clipPath: "polygon(8% 0, 92% 0, 100% 100%, 0% 100%)" }}
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-4 bg-[#c2a968]"
+            style={{ clipPath: "polygon(4% 0, 96% 0, 88% 100%, 12% 100%)" }}
+          />
+        </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="mt-3 flex items-center gap-4">
         <button
           type="button"
           onClick={() => cycle(-1)}
@@ -76,8 +90,6 @@ export function SubmarinePicker() {
           ▶
         </button>
       </div>
-
-      <p className="text-xs text-sunlight-950/50">{current.label}</p>
     </div>
   );
 }
