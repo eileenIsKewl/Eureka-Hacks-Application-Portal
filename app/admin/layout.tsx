@@ -2,10 +2,19 @@ import Link from "next/link";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-midnight-950">
+    <div className="relative min-h-screen">
+      {/* Fixed to the viewport so the gradient never scrolls away or cuts
+          off to flat black, no matter how long the page gets. */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_-10%,rgba(34,224,196,0.08),transparent_45%),radial-gradient(circle_at_90%_10%,rgba(34,224,196,0.05),transparent_40%)]"
+        className="fixed inset-0 -z-10"
+        style={{
+          background: `
+            radial-gradient(circle at 20% -10%, rgba(34,224,196,0.10), transparent 45%),
+            radial-gradient(circle at 90% 10%, rgba(34,224,196,0.06), transparent 40%),
+            linear-gradient(to bottom, var(--color-midnight-700), var(--color-midnight-900) 55%, var(--color-hadal-900))
+          `,
+        }}
       />
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         <header className="mb-8 flex items-center justify-between border-b border-white/10 pb-6">
@@ -21,10 +30,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </p>
           </div>
           <Link
-            href="/"
+            href="/apply"
             className="text-xs text-white/40 underline decoration-dotted underline-offset-4 hover:text-white/70"
           >
-            ← Back to surface site
+            ← Back to the application
           </Link>
         </header>
         {children}

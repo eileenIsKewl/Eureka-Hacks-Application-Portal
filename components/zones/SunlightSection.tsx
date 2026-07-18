@@ -82,7 +82,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
           </div>
 
           {/* Submarine dock: negative margin pulls it past the container edge, closer to the screen edge */}
-          <div className="flex items-center justify-center lg:-mr-32 lg:justify-end xl:-mr-50">
+          <div className="flex items-center justify-center lg:-mr-32 lg:justify-end xl:-mr-64">
             <SubmarinePicker />
           </div>
         </div>

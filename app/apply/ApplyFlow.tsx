@@ -4,6 +4,7 @@ import type { ZoneId } from "@/lib/data/types";
 import { scrollToZone } from "@/lib/scrollToZone";
 import { ApplicationProvider, useApplication } from "@/hooks/useApplication";
 import { SubmarineProvider } from "@/hooks/useSubmarineChoice";
+import { NavBar } from "@/components/NavBar";
 import { SubmarineFollower } from "@/components/SubmarineFollower";
 import { DescentBackground } from "@/components/zones/DescentBackground";
 import { SunlightSection } from "@/components/zones/SunlightSection";
@@ -54,6 +55,7 @@ export function ApplyFlow() {
   return (
     <ApplicationProvider>
       <SubmarineProvider>
+        <NavBar />
         <ApplyContent />
       </SubmarineProvider>
     </ApplicationProvider>
