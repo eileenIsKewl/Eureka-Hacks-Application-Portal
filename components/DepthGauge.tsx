@@ -50,7 +50,7 @@ export function DepthGauge({ currentZone }: DepthGaugeProps) {
 
   return (
     <div
-      className="sticky top-0 h-dvh w-2.5 shrink-0 sm:w-3"
+      className="fixed left-0 top-0 z-20 h-dvh w-2.5 shrink-0 sm:w-3"
       role="img"
       aria-label={`Currently in the ${currentZone} zone`}
     >

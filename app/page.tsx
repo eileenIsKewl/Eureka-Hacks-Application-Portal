@@ -1,12 +1,21 @@
 import Link from "next/link";
-import { ZoneBackground } from "@/components/zones/ZoneBackground";
+import { getZone } from "@/lib/zones";
+import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
+import { BubbleField } from "@/components/ui/BubbleField";
 import { ZoneMascot } from "@/components/creatures/ZoneMascot";
 import { Button } from "@/components/ui/Button";
 
+const zone = getZone("sunlight");
+
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
-      <ZoneBackground currentZone="sunlight" />
+    <div
+      className={`relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b ${zone.theme.bg} px-6 text-center`}
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <AmbientCreatures zoneId="sunlight" />
+        <BubbleField count={10} />
+      </div>
 
       <div className="relative z-10 flex max-w-xl flex-col items-center">
         <div className="mb-6">

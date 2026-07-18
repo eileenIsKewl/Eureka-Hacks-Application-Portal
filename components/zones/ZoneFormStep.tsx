@@ -1,40 +1,27 @@
 "use client";
 
-import { useState } from "react";
 import { getZone } from "@/lib/zones";
 import type { ZoneId } from "@/lib/data/types";
 import { FormField } from "@/components/ui/FormField";
 import { useApplication } from "@/hooks/useApplication";
-import { ZoneStepShell } from "./ZoneStepShell";
+import { ZoneSection } from "./ZoneSection";
 
 interface ZoneFormStepProps {
   zoneId: ZoneId;
+  onContinue: () => void;
 }
 
 /**
- * Generic, config-driven step used by the Sunlight, Twilight, Midnight, and
+ * Generic, config-driven section used by the Twilight, Midnight, and
  * Abyssal zones. The actual field list for each comes from lib/zones.ts, so
  * this component never needs to know about individual questions.
  */
-export function ZoneFormStep({ zoneId }: ZoneFormStepProps) {
+export function ZoneFormStep({ zoneId, onContinue }: ZoneFormStepProps) {
   const zone = getZone(zoneId);
-  const { values, errors, touched, setField, touchField, isZoneValid, touchZone, goNext } =
-    useApplication();
-  const [attempted, setAttempted] = useState(false);
-
-  const valid = isZoneValid(zoneId);
-
-  function handleNext() {
-    if (!valid) {
-      touchZone(zoneId);
-      setAttempted(true);
-      return;
-    }
-    goNext();
-  }
+  const { values, errors, touched, setField, touchField } = useApplication();
 
   return (
-    <ZoneStepShell zoneId={zoneId} onNext={handleNext} showJustCompleted={attempted && valid}>
+    <ZoneSection zoneId={zoneId} onContinue={onContinue}>
       <div className="flex flex-col gap-6">
         {zone.fields.map((field) => (
           <FormField
@@ -42,12 +29,12 @@ export function ZoneFormStep({ zoneId }: ZoneFormStepProps) {
             config={field}
             value={values[field.name] ?? ""}
             error={errors[field.name]}
-            touched={touched[field.name] || attempted}
+            touched={touched[field.name]}
             onChange={(v) => setField(field.name, v)}
             onBlur={() => touchField(field.name)}
           />
         ))}
       </div>
-    </ZoneStepShell>
+    </ZoneSection>
   );
 }

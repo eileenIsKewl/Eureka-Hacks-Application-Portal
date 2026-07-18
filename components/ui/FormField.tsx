@@ -117,7 +117,9 @@ export function FormField({
       )}
 
       {config.helper && !showError && (
-        <p className="text-xs text-white/40">{config.helper}</p>
+        <p className={cn("text-xs", tone === "light" ? "text-sunlight-950/40" : "text-white/40")}>
+          {config.helper}
+        </p>
       )}
       {showError && (
         <p role="alert" className="text-xs text-rose-400">
