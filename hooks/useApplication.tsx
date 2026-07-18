@@ -77,7 +77,6 @@ interface ApplicationContextValue {
   isZoneValid: (zoneId: ZoneId) => boolean;
   touchZone: (zoneId: ZoneId) => void;
   goToZone: (zoneId: ZoneId) => Promise<void>;
-  goNext: () => Promise<void>;
   submitApplication: () => Promise<{ ok: boolean; missing?: string[] }>;
   markResumeUploaded: (fileName: string) => void;
   startNewApplication: () => void;
@@ -337,7 +336,6 @@ export function ApplicationProvider({ children }: { children: React.ReactNode })
     isZoneValid,
     touchZone,
     goToZone,
-    goNext,
     submitApplication,
     markResumeUploaded,
     startNewApplication,

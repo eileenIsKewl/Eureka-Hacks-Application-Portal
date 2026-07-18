@@ -38,6 +38,7 @@ export function SubmarinePicker() {
         <div className="relative z-10 flex h-36 w-56 items-center justify-center">
           <CreatureSlot
             asset={`submarine-${current.id}`}
+            folder="submarines"
             alt={`${current.label} submarine`}
             className="h-full w-full object-contain drop-shadow-[0_10px_12px_rgba(0,0,0,0.3)]"
             fallback={
