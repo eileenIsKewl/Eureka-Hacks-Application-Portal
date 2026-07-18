@@ -32,7 +32,7 @@ export function SubmarinePicker() {
         Choose your submarine
       </p>
 
-      <div className="flex h-72 w-full max-w-xl items-end justify-center sm:h-96">
+      <div className="flex h-72 w-full max-w-2xl items-end justify-center sm:h-96">
         <CreatureSlot
           asset={`submarine-${current.id}`}
           folder="submarines"

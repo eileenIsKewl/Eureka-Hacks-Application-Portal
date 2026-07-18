@@ -59,9 +59,9 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
           How far down will you go?
         </h1>
 
-        <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid items-stretch gap-10 lg:grid-cols-2">
           {/* Glass form card */}
-          <div className="rounded-3xl border border-white/50 bg-white/25 p-8 shadow-[0_20px_50px_-20px_rgba(11,42,58,0.4)] backdrop-blur-xl">
+          <div className="flex flex-col justify-center rounded-3xl border border-white/50 bg-white/25 p-8 shadow-[0_20px_50px_-20px_rgba(11,42,58,0.4)] backdrop-blur-xl">
             <h2 className="mb-1 font-display text-2xl text-sunlight-950">Welcome!</h2>
             <p className="mb-6 text-sm text-sunlight-950/70">{zone.description}</p>
 
@@ -81,8 +81,8 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
             </div>
           </div>
 
-          {/* Submarine dock */}
-          <div className="flex items-center justify-center">
+          {/* Submarine dock: negative margin pulls it past the container edge, closer to the screen edge */}
+          <div className="flex items-center justify-center lg:-mr-32 lg:justify-end xl:-mr-50">
             <SubmarinePicker />
           </div>
         </div>
