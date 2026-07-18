@@ -3,25 +3,19 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { getZone } from "@/lib/zones";
+import { zoneSectionId, scrollToZone } from "@/lib/scrollToZone";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { CompanionStage } from "@/components/creatures/CompanionStage";
+import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
+import { BubbleField } from "@/components/ui/BubbleField";
 import { useApplication } from "@/hooks/useApplication";
 import { ReviewSummary } from "./ReviewSummary";
 
 const zone = getZone("hadal");
 
-export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
-  const {
-    applicantId,
-    values,
-    goBack,
-    goToZone,
-    hasResume,
-    resumeFileName,
-    markResumeUploaded,
-    submitApplication,
-  } = useApplication();
+export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
+  const { applicantId, values, hasResume, resumeFileName, markResumeUploaded, submitApplication } =
+    useApplication();
 
   const fileInput = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -61,21 +55,30 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
     if (result.ok) {
       onSubmitted();
     } else if (result.missing && result.missing.length > 0) {
-      setSubmitError(`A few things are still missing before this can go down for good. Add ${result.missing.join(", ")} and try again.`);
+      setSubmitError(
+        `A few things are still missing before this can go down for good. Add ${result.missing.join(", ")} and try again.`
+      );
     } else {
       setSubmitError("Something is still missing before this can go down for good. Double check every zone above.");
     }
   }
 
   return (
-    <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl items-center gap-6 px-6 py-16 lg:gap-10">
-      <CompanionStage zoneId="hadal" />
+    <section
+      id={zoneSectionId("hadal")}
+      className={`relative flex min-h-screen w-full items-center overflow-hidden bg-gradient-to-b ${zone.theme.bg} px-6 py-20 pl-8 sm:pl-12`}
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <AmbientCreatures zoneId="hadal" />
+        <BubbleField count={20} />
+      </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 36, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="min-w-0 flex-1"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative z-10 mx-auto w-full max-w-2xl"
       >
         <h1 className="mb-1 font-display text-3xl text-glow-300 sm:text-4xl">
           {zone.name}
@@ -122,7 +125,7 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
           )}
         </Card>
 
-        <ReviewSummary values={values} onEditZone={goToZone} />
+        <ReviewSummary values={values} onEditZone={scrollToZone} />
 
         {submitError && (
           <p role="alert" className="mt-6 text-center text-sm text-rose-400">
@@ -130,10 +133,7 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
           </p>
         )}
 
-        <div className="mt-8 flex items-center justify-between gap-4">
-          <Button variant="ghost" type="button" onClick={goBack}>
-            ← Back up
-          </Button>
+        <div className="mt-8 flex items-center justify-end gap-4">
           <Button
             variant="primary"
             type="button"
@@ -144,6 +144,6 @@ export function HadalZone({ onSubmitted }: { onSubmitted: () => void }) {
           </Button>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }

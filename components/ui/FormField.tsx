@@ -10,10 +10,18 @@ interface FormFieldProps {
   touched?: boolean;
   onChange: (value: string) => void;
   onBlur?: () => void;
+  /** "light" gives frosted-glass inputs for bright zone backgrounds (Sunlight); default suits dark zones. */
+  tone?: "dark" | "light";
 }
 
+const TONE_CLASSES: Record<"dark" | "light", string> = {
+  dark: "bg-black/25 text-white placeholder:text-white/35 focus:border-glow-500 focus:shadow-glow-teal",
+  light:
+    "bg-white/35 text-sunlight-950 placeholder:text-sunlight-950/40 backdrop-blur-sm focus:border-sunlight-800 focus:bg-white/50",
+};
+
 const baseControlClasses =
-  "w-full rounded-xl border bg-black/25 px-4 py-3 text-white placeholder:text-white/35 outline-none transition-colors duration-150 focus:border-glow-500 focus:shadow-glow-teal";
+  "w-full rounded-xl border px-4 py-3 outline-none transition-colors duration-150";
 
 export function FormField({
   config,
@@ -22,10 +30,13 @@ export function FormField({
   touched,
   onChange,
   onBlur,
+  tone = "dark",
 }: FormFieldProps) {
   const showError = touched && !!error;
   const borderClass = showError
     ? "border-rose-500/70"
+    : tone === "light"
+    ? "border-white/50"
     : "border-white/15";
 
   return (
