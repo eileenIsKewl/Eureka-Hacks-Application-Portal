@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 export function SubmarinePicker() {
   const { submarineId, chooseSubmarine } = useSubmarineChoice();
   const [previewId, setPreviewId] = useState(submarineId);
-  const [justSelected, setJustSelected] = useState(false);
+  const isSelected = previewId === submarineId;
 
   const index = SUBMARINE_OPTIONS.findIndex((s) => s.id === previewId);
   const current = SUBMARINE_OPTIONS[index] ?? SUBMARINE_OPTIONS[0];
@@ -20,12 +20,10 @@ export function SubmarinePicker() {
     const next =
       (index + offset + SUBMARINE_OPTIONS.length) % SUBMARINE_OPTIONS.length;
     setPreviewId(SUBMARINE_OPTIONS[next].id);
-    setJustSelected(false);
   }
 
   function select() {
     chooseSubmarine(previewId);
-    setJustSelected(true);
   }
 
   return (
@@ -75,9 +73,14 @@ export function SubmarinePicker() {
         <Button
           variant="primary"
           onClick={select}
-          className={cn("min-w-[9rem] text-lg", justSelected && "bg-glow-400")}
+          className={cn(
+            "min-w-[9rem] text-lg",
+            isSelected
+              ? "bg-emerald-500 text-emerald-950 shadow-[0_5px_0_0_theme(colors.emerald.700)] hover:bg-emerald-400 active:shadow-[0_1px_0_0_theme(colors.emerald.700)]"
+              : "bg-amber-400 text-amber-950 shadow-[0_5px_0_0_theme(colors.amber.600)] hover:bg-amber-300 active:shadow-[0_1px_0_0_theme(colors.amber.600)]"
+          )}
         >
-          {justSelected ? "Selected ✓" : "Select"}
+          {isSelected ? "Selected ✓" : "Select"}
         </Button>
 
         <button

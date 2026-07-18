@@ -6,8 +6,8 @@ import { getZone } from "@/lib/zones";
 import { zoneSectionId, scrollToZone } from "@/lib/scrollToZone";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
 import { BubbleField } from "@/components/ui/BubbleField";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { useApplication } from "@/hooks/useApplication";
 import { ReviewSummary } from "./ReviewSummary";
 
@@ -66,18 +66,17 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
   return (
     <section
       id={zoneSectionId("hadal")}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-20 pl-8 sm:pl-12"
+      className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32 pl-8 sm:pl-12"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <AmbientCreatures zoneId="hadal" />
+      <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={20} />
-      </div>
+      </ParallaxLayer>
 
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 70, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 mx-auto w-full max-w-2xl"
       >
         <h1 className="mb-1 font-display text-3xl text-glow-300 sm:text-4xl">

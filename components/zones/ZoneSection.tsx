@@ -8,7 +8,6 @@ import { zoneSectionId } from "@/lib/scrollToZone";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ReactionMascot } from "@/components/creatures/ReactionMascot";
-import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
 import { BubbleField } from "@/components/ui/BubbleField";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { useApplication } from "@/hooks/useApplication";
@@ -51,18 +50,17 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
   return (
     <section
       id={zoneSectionId(zoneId)}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-20 pl-8 sm:pl-12"
+      className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32 pl-8 sm:pl-12"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <AmbientCreatures zoneId={zoneId} />
+      <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={14} />
-      </div>
+      </ParallaxLayer>
 
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 70, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 mx-auto w-full max-w-2xl"
       >
         <div className="mb-1 flex items-center gap-3">

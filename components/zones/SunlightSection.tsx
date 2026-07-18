@@ -6,8 +6,8 @@ import { getZone, zonesRemaining } from "@/lib/zones";
 import { zoneSectionId } from "@/lib/scrollToZone";
 import { FormField } from "@/components/ui/FormField";
 import { Button } from "@/components/ui/Button";
-import { AmbientCreatures } from "@/components/creatures/AmbientCreatures";
 import { BubbleField } from "@/components/ui/BubbleField";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { SubmarinePicker } from "@/components/SubmarinePicker";
 import { useApplication } from "@/hooks/useApplication";
 
@@ -40,12 +40,11 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
   return (
     <section
       id={zoneSectionId("sunlight")}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-20 pl-8 sm:pl-12"
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-16 pl-8 sm:pl-12"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <AmbientCreatures zoneId="sunlight" />
+      <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={10} />
-      </div>
+      </ParallaxLayer>
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
