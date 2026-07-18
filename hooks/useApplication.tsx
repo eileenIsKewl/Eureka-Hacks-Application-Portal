@@ -78,7 +78,6 @@ interface ApplicationContextValue {
   touchZone: (zoneId: ZoneId) => void;
   goToZone: (zoneId: ZoneId) => Promise<void>;
   goNext: () => Promise<void>;
-  goBack: () => Promise<void>;
   submitApplication: () => Promise<{ ok: boolean; missing?: string[] }>;
   markResumeUploaded: (fileName: string) => void;
   startNewApplication: () => void;
