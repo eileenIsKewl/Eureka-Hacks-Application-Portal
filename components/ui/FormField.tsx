@@ -21,7 +21,7 @@ const TONE_CLASSES: Record<"dark" | "light", string> = {
 };
 
 const baseControlClasses =
-  "w-full rounded-xl border px-4 py-3 outline-none transition-colors duration-150";
+  "w-full rounded-xl border px-4 py-3 text-lg outline-none transition-colors duration-150";
 
 export function FormField({
   config,
@@ -44,7 +44,7 @@ export function FormField({
       <label
         htmlFor={config.name}
         className={cn(
-          "flex items-baseline justify-between text-sm font-medium",
+          "flex items-baseline justify-between text-base font-medium",
           tone === "light" ? "text-sunlight-950/85" : "text-white/80"
         )}
       >
@@ -59,7 +59,7 @@ export function FormField({
         {config.maxLength && (
           <span
             className={cn(
-              "text-xs font-normal",
+              "text-sm font-normal",
               tone === "light" ? "text-sunlight-950/40" : "text-white/35"
             )}
           >
@@ -117,12 +117,12 @@ export function FormField({
       )}
 
       {config.helper && !showError && (
-        <p className={cn("text-xs", tone === "light" ? "text-sunlight-950/40" : "text-white/40")}>
+        <p className={cn("text-sm", tone === "light" ? "text-sunlight-950/40" : "text-white/40")}>
           {config.helper}
         </p>
       )}
       {showError && (
-        <p role="alert" className="text-xs text-rose-400">
+        <p role="alert" className="text-sm text-rose-400">
           {error}
         </p>
       )}
