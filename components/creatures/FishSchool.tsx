@@ -32,23 +32,24 @@ interface FishInstance {
 }
 
 // Deterministic spread (no Math.random) so server and client render the
-// same swarm. Every fish gets 2-3 copies, each with its own lane, size,
-// speed, and direction.
+// same swarm. Copy count adapts to the zone's roster size, so zones with
+// only a couple of species (like Twilight) still get a full school; each
+// copy has its own lane, size, speed, and direction.
 function instancesFor(files: string[]): FishInstance[] {
   const out: FishInstance[] = [];
+  const copiesPerFish = Math.max(4, Math.round(20 / files.length));
   files.forEach((file, fi) => {
-    const copies = 2 + (fi % 2);
-    for (let c = 0; c < copies; c++) {
+    for (let c = 0; c < copiesPerFish; c++) {
       const seed = fi * 7 + c * 13 + 3;
       out.push({
         file,
-        top: `${6 + ((seed * 17) % 80)}%`,
-        width: 55 + ((seed * 29) % 85),
-        duration: 24 + ((seed * 11) % 28),
-        delay: -((seed * 5) % 40),
-        bobDuration: 3 + (seed % 4),
+        top: `${4 + ((seed * 17) % 86)}%`,
+        width: 80 + ((seed * 29) % 160),
+        duration: 18 + ((seed * 11) % 34),
+        delay: -((seed * 5) % 45),
+        bobDuration: 3 + (seed % 5),
         direction: seed % 2 === 0 ? "left" : "right",
-        opacity: 0.65 + ((seed % 4) * 0.08),
+        opacity: 0.7 + ((seed % 4) * 0.1),
       });
     }
   });
