@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { BubbleField } from "@/components/ui/BubbleField";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
+import { FishSchool } from "@/components/creatures/FishSchool";
 import { useApplication } from "@/hooks/useApplication";
 import { ReviewSummary } from "./ReviewSummary";
 
@@ -91,6 +92,7 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={20} />
       </ParallaxLayer>
+      <FishSchool zoneId="hadal" />
 
       <motion.div
         id={zoneSectionId("hadal")}

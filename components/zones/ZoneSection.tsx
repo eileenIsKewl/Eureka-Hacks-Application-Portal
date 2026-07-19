@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { ReactionMascot } from "@/components/creatures/ReactionMascot";
 import { BubbleField } from "@/components/ui/BubbleField";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
+import { FishSchool } from "@/components/creatures/FishSchool";
 import { useApplication } from "@/hooks/useApplication";
 
 interface ZoneSectionProps {
@@ -52,6 +53,7 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={14} />
       </ParallaxLayer>
+      <FishSchool zoneId={zoneId} />
 
       <motion.div
         id={zoneSectionId(zoneId)}
