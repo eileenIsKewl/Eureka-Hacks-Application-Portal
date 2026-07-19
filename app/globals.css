@@ -131,6 +131,36 @@
   }
 }
 
+/* Background fish crossing the full section width. Negative animation-delay
+   starts each fish mid-journey so sections never load fishless. */
+@keyframes swim-left {
+  from {
+    transform: translateX(105vw);
+  }
+  to {
+    transform: translateX(-20vw);
+  }
+}
+
+@keyframes swim-right {
+  from {
+    transform: translateX(-20vw);
+  }
+  to {
+    transform: translateX(105vw);
+  }
+}
+
+@keyframes fish-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
 @utility shadow-glow-sunlight {
   box-shadow:
     0 0 30px -6px var(--color-sunlight-400),
