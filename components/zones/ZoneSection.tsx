@@ -49,7 +49,7 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
   }
 
   return (
-    <section className="relative flex min-h-[150vh] w-full items-center overflow-hidden px-6 py-32">
+    <section className="relative flex min-h-[150vh] w-full items-center px-6 py-32">
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={14} />
       </ParallaxLayer>
@@ -64,24 +64,24 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
         className="relative z-10 mx-auto w-full max-w-2xl scroll-mt-20"
       >
         <div className="mb-1 flex items-center gap-3">
-          <h1 className={`font-display text-3xl ${zone.theme.text} sm:text-4xl`}>
+          <h1 className={`font-display text-4xl ${zone.theme.text} sm:text-5xl`}>
             {zone.name}
           </h1>
           <ReactionMascot zoneId={zoneId} show={attempted && isZoneValid(zoneId)} />
         </div>
-        <p className="mb-4 text-xs uppercase tracking-wide text-white/40">
+        <p className="mb-4 text-sm uppercase tracking-wide text-white/50">
           {zone.depthLabel}
           {remaining > 0 &&
             ` · ${remaining} zone${remaining === 1 ? "" : "s"} left to sink through`}
         </p>
-        <p className="mb-8 max-w-lg text-white/70">{zone.description}</p>
+        <p className="mb-8 max-w-xl text-lg text-white/75">{zone.description}</p>
 
         {headerExtra}
 
         <Card className={zone.theme.glow}>{children}</Card>
 
         <div className="mt-6 flex items-center justify-end gap-4">
-          <span className="hidden text-xs text-white/40 sm:inline">
+          <span className="hidden text-sm text-white/40 sm:inline">
             {SAVE_LABEL[saveStatus]}
           </span>
           <Button variant="primary" onClick={handleContinue} type="button">

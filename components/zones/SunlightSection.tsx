@@ -41,7 +41,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
   return (
     <section
       id={zoneSectionId("sunlight")}
-      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 py-16"
+      className="relative flex min-h-screen w-full items-center px-6 py-16"
     >
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={10} />
@@ -54,18 +54,18 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 mx-auto w-full max-w-7xl"
       >
-        <p className="mb-2 text-xs uppercase tracking-[0.3em] text-sunlight-950/60">
+        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-sunlight-950/60">
           EurekaHacks · {zone.depthLabel}
         </p>
-        <h1 className="mb-8 font-display text-3xl text-sunlight-950 sm:text-5xl">
+        <h1 className="mb-8 font-display text-4xl text-sunlight-950 sm:text-6xl">
           How far down will you go?
         </h1>
 
         <div className="grid items-stretch gap-10 lg:grid-cols-2">
           {/* Glass form card */}
           <div className="flex flex-col justify-center rounded-3xl border border-white/50 bg-white/25 p-8 shadow-[0_20px_50px_-20px_rgba(11,42,58,0.4)] backdrop-blur-xl">
-            <h2 className="mb-1 font-display text-2xl text-sunlight-950">Welcome!</h2>
-            <p className="mb-6 text-sm text-sunlight-950/70">{zone.description}</p>
+            <h2 className="mb-1 font-display text-3xl text-sunlight-950">Welcome!</h2>
+            <p className="mb-6 text-base text-sunlight-950/70">{zone.description}</p>
 
             <div className="flex flex-col gap-5">
               {zone.fields.map((field) => (
@@ -89,7 +89,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
           </div>
         </div>
 
-        <p className="mt-6 text-xs text-sunlight-950/50">
+        <p className="mt-6 text-sm text-sunlight-950/50">
           {remaining} zone{remaining === 1 ? "" : "s"} left to sink through after this one
         </p>
 

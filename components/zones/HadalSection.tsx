@@ -88,7 +88,7 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
   }
 
   return (
-    <section className="relative flex min-h-[170vh] w-full items-center overflow-hidden px-6 py-32">
+    <section className="relative flex min-h-[170vh] w-full items-center px-6 py-32">
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={20} />
       </ParallaxLayer>

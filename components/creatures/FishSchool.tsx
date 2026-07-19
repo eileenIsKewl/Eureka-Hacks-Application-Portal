@@ -41,10 +41,11 @@ function instancesFor(files: string[]): FishInstance[] {
   files.forEach((file, fi) => {
     for (let c = 0; c < copiesPerFish; c++) {
       const seed = fi * 7 + c * 13 + 3;
+      const width = 80 + ((seed * 29) % 160);
       out.push({
         file,
         top: `${4 + ((seed * 17) % 86)}%`,
-        width: 80 + ((seed * 29) % 160),
+        width,
         duration: 18 + ((seed * 11) % 34),
         delay: -((seed * 5) % 45),
         bobDuration: 3 + (seed % 5),
@@ -67,7 +68,11 @@ export function FishSchool({ zoneId }: { zoneId: ZoneId }) {
   const school = instancesFor(files);
 
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    // Deliberately unclipped: fish near a zone edge swim across the
+    // boundary and overlap the neighboring section instead of losing
+    // their tails to it. (Horizontal overflow is caught by the body's
+    // overflow-x: hidden.)
+    <div aria-hidden className="pointer-events-none absolute inset-0">
       {school.map((fish, i) => (
         <div
           key={i}
