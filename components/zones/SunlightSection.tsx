@@ -8,6 +8,7 @@ import { FormField } from "@/components/ui/FormField";
 import { Button } from "@/components/ui/Button";
 import { BubbleField } from "@/components/ui/BubbleField";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
+import { FishSchool } from "@/components/creatures/FishSchool";
 import { SubmarinePicker } from "@/components/SubmarinePicker";
 import { useApplication } from "@/hooks/useApplication";
 
@@ -45,6 +46,7 @@ export function SunlightSection({ onContinue }: SunlightSectionProps) {
       <ParallaxLayer className="pointer-events-none absolute inset-0">
         <BubbleField count={10} />
       </ParallaxLayer>
+      <FishSchool zoneId="sunlight" />
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
