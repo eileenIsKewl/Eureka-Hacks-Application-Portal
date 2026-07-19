@@ -11,6 +11,7 @@ import { ReactionMascot } from "@/components/creatures/ReactionMascot";
 import { BubbleField } from "@/components/ui/BubbleField";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { FishSchool } from "@/components/creatures/FishSchool";
+import { CoralDivider } from "@/components/decorations/CoralDivider";
 import { useApplication } from "@/hooks/useApplication";
 
 interface ZoneSectionProps {
@@ -54,6 +55,7 @@ export function ZoneSection({ zoneId, children, onContinue, nextLabel, headerExt
         <BubbleField count={14} />
       </ParallaxLayer>
       <FishSchool zoneId={zoneId} />
+      <CoralDivider order={zone.order} />
 
       <motion.div
         id={zoneSectionId(zoneId)}
