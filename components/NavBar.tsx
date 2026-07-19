@@ -32,14 +32,14 @@ export function NavBar() {
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-glow-500 font-display text-sm text-hadal-950 shadow-glow-teal">
           EH
         </div>
-        <span className="cursor-default text-sm font-semibold text-sunlight-950/80 transition-colors hover:text-sunlight-950">
+        <span className="cursor-default text-base font-semibold text-sunlight-950/80 transition-colors hover:text-sunlight-950">
           Home
         </span>
       </div>
 
       <Link
         href="/admin"
-        className="rounded-xl border border-sunlight-950/25 bg-white/25 px-4 py-2 text-sm font-semibold text-sunlight-950/80 backdrop-blur-sm transition-colors hover:border-sunlight-950/40 hover:text-sunlight-950"
+        className="rounded-xl border border-sunlight-950/25 bg-white/25 px-4 py-2 text-base font-semibold text-sunlight-950/80 backdrop-blur-sm transition-colors hover:border-sunlight-950/40 hover:text-sunlight-950"
       >
         Admin Portal
       </Link>

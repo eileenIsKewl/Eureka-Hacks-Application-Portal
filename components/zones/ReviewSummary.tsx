@@ -21,7 +21,7 @@ export function ReviewSummary({ values, onEditZone }: ReviewSummaryProps) {
         aria-hidden
         className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-sunlight-400/10 blur-3xl"
       />
-      <p className="relative mb-6 text-center text-sm text-white/50">
+      <p className="relative mb-6 text-center text-base text-white/55">
         Look back up. This is everything you&apos;re bringing down with you.
       </p>
       <div className="relative flex flex-col gap-5">

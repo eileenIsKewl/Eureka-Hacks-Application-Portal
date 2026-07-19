@@ -102,19 +102,19 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 mx-auto w-full max-w-2xl scroll-mt-24 pt-12"
       >
-        <h1 className="mb-1 font-display text-3xl text-glow-300 sm:text-4xl">
+        <h1 className="mb-1 font-display text-4xl text-glow-300 sm:text-5xl">
           {zone.name}
         </h1>
-        <p className="mb-4 text-xs uppercase tracking-wide text-white/40">
+        <p className="mb-4 text-sm uppercase tracking-wide text-white/50">
           {zone.depthLabel}
         </p>
-        <p className="mb-8 max-w-lg text-white/70">{zone.description}</p>
+        <p className="mb-8 max-w-xl text-lg text-white/75">{zone.description}</p>
 
         <Card className={`mb-8 ${zone.theme.glow}`}>
-          <h2 className="mb-3 font-display text-lg text-glow-300">
-            Resume <span className="text-sm text-glow-400">*</span>
+          <h2 className="mb-3 font-display text-xl text-glow-300">
+            Resume <span className="text-base text-glow-400">*</span>
           </h2>
-          <p className="mb-4 text-sm text-white/60">
+          <p className="mb-4 text-base text-white/60">
             One last artifact to carry into the dark.
           </p>
           <input
@@ -137,11 +137,11 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
               {uploading ? "Sending it down…" : hasResume ? "Replace file" : "Choose file"}
             </Button>
             {hasResume && resumeFileName && (
-              <span className="text-sm text-glow-400">✓ {resumeFileName}</span>
+              <span className="text-base text-glow-400">✓ {resumeFileName}</span>
             )}
           </div>
           {uploadError && (
-            <p role="alert" className="mt-3 text-xs text-rose-400">
+            <p role="alert" className="mt-3 text-sm text-rose-400">
               {uploadError}
             </p>
           )}
@@ -150,12 +150,12 @@ export function HadalSection({ onSubmitted }: { onSubmitted: () => void }) {
         <ReviewSummary values={values} onEditZone={scrollToZone} />
 
         {submitError && (
-          <p role="alert" className="mt-6 text-center text-sm text-rose-400">
+          <p role="alert" className="mt-6 text-center text-base text-rose-400">
             {submitError}
           </p>
         )}
         {!submitError && !readyToSubmit && (
-          <p className="mt-6 text-center text-sm text-white/40">
+          <p className="mt-6 text-center text-base text-white/45">
             {hasResume
               ? "Finish every answer above to send this down."
               : "Finish every answer above and add your resume to send this down."}

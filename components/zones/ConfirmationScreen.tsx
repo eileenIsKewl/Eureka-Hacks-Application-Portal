@@ -44,7 +44,7 @@ export function ConfirmationScreen({ applicantId }: ConfirmationScreenProps) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35, duration: 0.6 }}
-        className="relative z-10 max-w-md text-white/70"
+        className="relative z-10 max-w-md text-lg text-white/75"
       >
         Your application just reached the bottom of the trench, the deepest
         point we go. It&apos;s been logged, and our crew will surface with a

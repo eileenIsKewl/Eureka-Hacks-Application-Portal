@@ -28,33 +28,44 @@ interface FishInstance {
   delay: number;
   bobDuration: number;
   direction: "left" | "right";
-  opacity: number;
+  distant: boolean;
 }
+
+// The sepia-then-hue-rotate trick washes the art toward blue, which with
+// the blur and lowered contrast reads as "seen through a lot of water."
+// Fish stay fully opaque (translucency looked wrong wherever two fish
+// crossed paths); distance is sold entirely by this filter instead.
+const DISTANT_FILTER =
+  "blur(1.5px) sepia(0.45) hue-rotate(160deg) saturate(0.65) brightness(0.85)";
 
 // Deterministic spread (no Math.random) so server and client render the
 // same swarm. Copy count adapts to the zone's roster size, so zones with
 // only a couple of species (like Twilight) still get a full school; each
-// copy has its own lane, size, speed, and direction.
+// copy has its own lane, size, speed, and direction. Roughly a third of
+// the school swims in a distant layer: smaller, slower, blue-washed.
 function instancesFor(files: string[]): FishInstance[] {
   const out: FishInstance[] = [];
   const copiesPerFish = Math.max(4, Math.round(20 / files.length));
   files.forEach((file, fi) => {
     for (let c = 0; c < copiesPerFish; c++) {
       const seed = fi * 7 + c * 13 + 3;
+      const distant = seed % 3 === 0;
       const width = 80 + ((seed * 29) % 160);
+      const duration = 18 + ((seed * 11) % 34);
       out.push({
         file,
         top: `${4 + ((seed * 17) % 86)}%`,
-        width,
-        duration: 18 + ((seed * 11) % 34),
+        width: distant ? Math.round(width * 0.55) : width,
+        duration: distant ? Math.round(duration * 1.6) : duration,
         delay: -((seed * 5) % 45),
         bobDuration: 3 + (seed % 5),
         direction: seed % 2 === 0 ? "left" : "right",
-        opacity: 0.7 + ((seed % 4) * 0.1),
+        distant,
       });
     }
   });
-  return out;
+  // Distant fish paint first so near fish always pass in front of them.
+  return out.sort((a, b) => Number(b.distant) - Number(a.distant));
 }
 
 /**
@@ -91,7 +102,7 @@ export function FishSchool({ zoneId }: { zoneId: ZoneId }) {
               draggable={false}
               style={{
                 width: fish.width,
-                opacity: fish.opacity,
+                filter: fish.distant ? DISTANT_FILTER : undefined,
                 transform: fish.direction === "right" ? "scaleX(-1)" : undefined,
               }}
             />
